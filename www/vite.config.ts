@@ -56,6 +56,8 @@ export default defineConfig({
       '@views': resolve(__dirname, 'src/views'),
       '@plugin': resolve(__dirname, 'src/plugin'),
       '@module': resolve(__dirname, 'src/components'),
+      '@home': resolve(__dirname, 'src/packages/home'),
+      '@admin': resolve(__dirname, 'src/packages/admin'),
     },
   },
 });

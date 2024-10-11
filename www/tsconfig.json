@@ -1,4 +1,5 @@
-{"compilerOptions": {
+{
+  "compilerOptions": {
     "target": "ES2020",
     "module": "ESNext",
     "skipLibCheck": true,
@@ -17,8 +18,30 @@
     "strict": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+
+    /* Alias */
+    "baseUrl": "./",
+    "paths": {
+      "@api": ["src/api"],
+      "@store": ["src/store"],
+      "@utils": ["src/utils"],
+      "@views": ["src/views"],
+      "@plugin": ["src/plugin"],
+      "@module": ["src/components"],
+      "@home": ["src/packages/home"],
+      "@admin": ["src/packages/admin"],
+      /* Alias/$ */
+      "@api/*": ["src/api/*"],
+      "@store/*": ["src/store/*"],
+      "@utils/*": ["src/utils/*"],
+      "@views/*": ["src/views/*"],
+      "@plugin/*": ["src/plugin/*"],
+      "@module/*": ["src/components/*"],
+      "@home/*": ["src/packages/home/*"],
+      "@admin/*": ["src/packages/admin/*"]
+    }
   },
   "include": ["src/**/*.{ts,vue}"],
-  "references": [{"path":"./tsconfig.node.json"}]
+  "references": [{"path": "./tsconfig.node.json"}]
 }
