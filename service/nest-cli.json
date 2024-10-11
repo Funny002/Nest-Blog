@@ -3,6 +3,18 @@
   "collection": "@nestjs/schematics",
   "sourceRoot": "src",
   "compilerOptions": {
-    "deleteOutDir": true
+    "deleteOutDir": true,
+    "webpack": true
+  },
+  "projects": {
+    "mysql": {
+      "root": "mysql",
+      "type": "library",
+      "entryFile": "index",
+      "sourceRoot": "mysql",
+      "compilerOptions": {
+        "tsConfigPath": "mysql/tsconfig.lib.json"
+      }
+    }
   }
 }

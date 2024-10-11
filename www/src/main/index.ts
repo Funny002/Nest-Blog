@@ -1,4 +1,12 @@
-import { createApp } from 'vue'
+import {createApp} from 'vue'
 import Main from './index.vue'
 
-createApp(Main).mount('#app')
+async function bootstrap() {
+    const app = createApp(Main)
+    app.mount('#app')
+    return app
+}
+
+bootstrap().then(() => {
+    console.log("bootstrap")
+})
