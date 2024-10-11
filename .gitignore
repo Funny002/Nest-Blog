@@ -1,0 +1,15 @@
+.env
+.idea
+.temp
+.cache
+.DS_Store
+
+dist
+logs
+build
+output
+coverage
+node_modules
+
+*.log
+package-lock.json
