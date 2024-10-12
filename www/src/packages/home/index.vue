@@ -1,11 +1,8 @@
-<script setup lang="ts">
-
-</script>
-
 <template>
-
+  Home
 </template>
 
-<style scoped lang="scss">
-
-</style>
+<script lang="ts">export default { name: 'Home' };</script>
+<script lang="ts" setup>
+//
+</script>

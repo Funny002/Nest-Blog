@@ -3,7 +3,9 @@ import { RouteRecordRaw } from 'vue-router';
 export const routes: RouteRecordRaw[] = [{
   path: '/',
   name: 'App',
+  redirect: '/home',
   children: [
+    { name: 'Home', path: 'home', component: () => import('@home/index.vue') }, // 首页
     {
       name: 'Sign',
       path: 'sign',

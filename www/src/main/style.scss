@@ -1,0 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --var-corlo: #606266;
+  --var-background-color: #f2f4f7;
+}
+
+body {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--var-corlo, #606266);
+  background-color: var(--var-background-color, #f2f4f7);
+  font-family: Inter, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+}
+
+#app {
+  width: 100vw;
+  height: 100vh;
+}

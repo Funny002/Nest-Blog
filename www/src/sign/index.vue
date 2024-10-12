@@ -1,12 +1,13 @@
 <template>
   <div id="Sign" class="sign">
-    <div class="sign-header">header</div>
-    <div class="sign-body">
+    <div class="sign-header">sign-header</div>
+    <div class="sign-content">
       <router-view/>
     </div>
-    <div class="sign-footer">footer</div>
+    <div class="sign-footer">sign-footer</div>
   </div>
 </template>
 
 <script lang="ts">export default { name: 'Sign' };</script>
-<script lang="ts" setup></script>
+
+<style lang="scss" src="./style.scss"></style>
