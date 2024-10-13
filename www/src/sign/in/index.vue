@@ -8,7 +8,9 @@
         <el-button type="primary">Sign</el-button>
       </div>
       <el-divider class="signBox-divider" direction="vertical"/>
-      <dynamic-form :fields="data.fields" style="width: 300px;"/>
+      <dynamic-form :fields="data.fields" style="width: 300px;">
+        <template #text>template</template>
+      </dynamic-form>
     </div>
   </div>
 </template>
@@ -21,8 +23,9 @@ import { DynamicForm } from '@module/DynamicForm';
 const data = reactive({
   form: {},
   fields: [
-    { input: 'input', prop: 'user', placeholder: 'User/Email' },
-    { input: 'password', prop: 'pass', placeholder: 'Pass' },
+    { field: 'text', prop: 'user', placeholder: 'User/Email' },
+    { field: 'password', prop: 'pass', placeholder: 'Pass' },
+    { slot: 'text' },
   ],
 });
 </script>
