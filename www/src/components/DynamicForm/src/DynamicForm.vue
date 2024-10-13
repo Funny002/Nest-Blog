@@ -2,7 +2,7 @@
   <el-form v-bind="props.formProps" :model="props.modelValue">
     <el-row v-bind="props.rowProps">
       <template v-for="fields in props.fields">
-        <el-col v-bind="fields.colProps">
+        <el-col v-bind="fields.colProps || {}">
           <dynamic-form-item :fields="fields"/>
         </el-col>
       </template>
@@ -36,14 +36,21 @@ const props = withDefaults(defineProps<Props>(), {
 provide('$slots', computed(() => slots));
 provide('$modules', computed(() => Object.assign({}, Modules, props.modules)));
 
-provide('modelValue', computed({
+const emits = defineEmits(['update:modelValue', 'change', 'changeItem']);
+
+provide('$values', computed({
   get() {
     return props.modelValue;
   },
   set(value: Record<string, any>) {
-    console.log('DynamicForm ->', value);
+    emits('update:modelValue', value);
+    emits('change', value);
   },
 }));
+
+provide('change-item', function (...args: any[]) {
+  emits('changeItem', ...args);
+});
 </script>
 
 <style lang="scss" src="./style.scss"></style>

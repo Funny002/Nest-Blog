@@ -1,10 +1,8 @@
 <template>
-  <el-form-item>
-    <el-input type="password" show-password/>
-  </el-form-item>
+  <modules-input v-bind="$attrs" type="password" show-password/>
 </template>
 
-<script lang="ts">export default { name: 'DynamicForm-PassWord', inheritAttrs: false };</script>
+<script lang="ts">export default { name: 'DynamicForm-Password', inheritAttrs: false };</script>
 <script lang="ts" setup>
-import type { ElFormItem } from 'element-plus';
+import ModulesInput from './input.vue';
 </script>

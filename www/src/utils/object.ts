@@ -9,13 +9,22 @@ export const getType = (target: any, locale: boolean | 'upper' | 'lower' = false
   return type;
 };
 
-export const hasType = (target: any, ...args: string[]): boolean => {
-  const type = getType(target, true);
-  return args.map(v => v.toLocaleLowerCase()).includes(type);
-};
+export function hasType(target: any, ...args: string[]): boolean {
+  return args.map(v => v.toLocaleLowerCase()).includes(getType(target, true));
+}
 
-export function rewriteObj(target: { [k: string]: any }, array: string[]) {
-  return array.reduce(function (value: { [k: string]: any }, keys: string) {
+export function ObjectOmit<T = Record<string, any>, V = Array<string>>(target: T, omits: V): Omit<T, V> {
+  const newValue = Object.assign({}, target);
+  for (const key of omits) {
+    if (key in newValue) {
+      delete newValue[key];
+    }
+  }
+  return newValue;
+}
+
+export function ObjectPick<T = Record<string, any>, V = Array<string>>(target: T, array: V): Pick<T, V> {
+  return array.reduce(function (value: Record<string, any>, keys: string) {
     if (keys in target) value[keys] = target[keys];
     return value;
   }, {});

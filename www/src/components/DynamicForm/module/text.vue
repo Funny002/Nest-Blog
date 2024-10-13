@@ -1,14 +1,8 @@
 <template>
-  <el-form-item>
-    <el-input/>
-  </el-form-item>
+  <modules-input v-bind="$attrs"/>
 </template>
 
 <script lang="ts">export default { name: 'DynamicForm-Text', inheritAttrs: false };</script>
 <script lang="ts" setup>
-import type { ElFormItem } from 'element-plus';
-
-interface Props {
-  formItem: ElFormItem;
-}
+import ModulesInput from './input.vue';
 </script>

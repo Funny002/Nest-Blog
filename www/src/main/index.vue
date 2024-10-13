@@ -11,7 +11,7 @@ import zhCN from 'element-plus/dist/locale/zh-cn.mjs';
 
 const ConfigProvider = reactive({
   locale: zhCN,
-  size: 'small',
+  // size: 'small',
   valueOnClear: null,
   button: {
     autoInsertSpace: true,
