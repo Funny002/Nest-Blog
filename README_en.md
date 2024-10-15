@@ -17,7 +17,7 @@ The design file may contain errors of detail errors.
 | Page design     | [`Devise.psd`](./Devise.psd)     | [`Adobe Photoshop`](https://www.adobe.com/products/photoshop.html) |
 | Database Design | [`MySQL.iodraw`](./MySQL.iodraw) | [`Draw.io`](https://app.diagrams.net/)                             |
 
-## [Previews](. /Previews.md)
+## [Previews](./Previews.md)
 
 Preview images and designs may vary somewhat and are for reference only.
 
