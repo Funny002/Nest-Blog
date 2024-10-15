@@ -3,7 +3,7 @@
     <h2 class="signBox-title">Sign In</h2>
     <div class="signBox-content">
       <div style="width: 240px">
-        <qr-code-view value="test QrCode" description="description"/>
+        <qr-code-view value="Nest-Blog" description="description"/>
       </div>
       <el-divider class="signBox-divider" direction="vertical"/>
       <dynamic-form :fields="data.fields" v-model="data.form" @changeItem="onFormChangeItem" style="margin: 0 16px; width: 208px;">
