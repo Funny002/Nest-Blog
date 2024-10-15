@@ -1,5 +1,5 @@
 <template>
-  <el-form v-bind="props.formProps" :model="props.modelValue">
+  <el-form class="dynamicForm" v-bind="props.formProps" :model="props.modelValue">
     <el-row v-bind="props.rowProps">
       <template v-for="fields in props.fields">
         <el-col v-bind="fields.colProps || {}">

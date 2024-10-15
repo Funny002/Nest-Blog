@@ -1,5 +1,5 @@
 <template>
-  <modules-input v-bind="$attrs"/>
+  <modules-input class="dynamicForm-text" v-bind="$attrs"/>
 </template>
 
 <script lang="ts">export default { name: 'DynamicForm-Text', inheritAttrs: false };</script>

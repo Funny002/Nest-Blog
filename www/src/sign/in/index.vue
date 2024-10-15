@@ -2,10 +2,11 @@
   <div id="SignBox" class="signBox">
     <h2 class="signBox-title">Sign In</h2>
     <div class="signBox-content">
-      <div class="">
+      <div style="width: 240px">
+        <qr-code-view value="test QrCode" description="description"/>
       </div>
       <el-divider class="signBox-divider" direction="vertical"/>
-      <dynamic-form :fields="data.fields" v-model="data.form" @changeItem="onFormChangeItem" style="margin: 0 16px; width: 240px;">
+      <dynamic-form :fields="data.fields" v-model="data.form" @changeItem="onFormChangeItem" style="margin: 0 16px; width: 208px;">
         <template #button>
           <el-button type="primary" style="width: 100%;">Login</el-button>
           <div style="margin-top: 16px;">
@@ -20,6 +21,7 @@
 <script lang="ts">export default { name: 'Sign In' };</script>
 <script setup lang="ts">
 import { DynamicForm } from '@module/DynamicForm';
+import { QrCodeView } from '@module/QrCode';
 import { useRouter } from 'vue-router';
 import { reactive } from 'vue';
 

@@ -1,5 +1,5 @@
 <template>
-  <el-form-item :class="$attrs.class" v-bind="props.formItem" :prop="props.prop">
+  <el-form-item class="dynamicForm-input" :class="$attrs.class" v-bind="props.formItem" :prop="props.prop">
     <el-input v-bind="handlerBindProps($attrs)" v-on="props.events" v-model="values" @keydown.enter="onEnter">
       <template v-for="(slots, keys) in Object.assign(props.slots, $slots)" :key="keys" #[keys]="scope">
         <component :is="slots" v-bind="scope"/>

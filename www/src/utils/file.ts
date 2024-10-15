@@ -8,7 +8,30 @@ export function FileToBase64(file: File): Promise<string> {
   });
 }
 
-export function getFile() {
+export function base64ToFile(filename: string, base64: string): File {
+  const [_, mimeType, string] = base64.match(/^data:([^;]+);base64,(.+)$/);
+  const value = atob(string);
+  const buffer = new Uint8Array(value.length);
+  for (const i in value) {
+    buffer[i] = value.charCodeAt(i);
+  }
+  return new File([buffer], filename, { type: mimeType });
+}
+
+export function toImage(value: File | string): Promise<HTMLImageElement> {
+  const image = new Image();
+  return new Promise(async (resolve, reject) => {
+    image.onload = function () {
+      resolve(image);
+    };
+    image.onerror = function () {
+      reject(new Error('Failed to load image'));
+    };
+    image.src = typeof value === 'string' ? value : await FileToBase64(value);
+  });
+}
+
+export function getFile(): Promise<File> {
   return new Promise<File>(resolve => {
     const input = document.createElement('input');
     input.type = 'file';
@@ -20,7 +43,7 @@ export function getFile() {
   });
 }
 
-export function getDragFile({ dataTransfer }: { dataTransfer: DataTransfer }) {
+export function getDragFile({ dataTransfer }: { dataTransfer: DataTransfer }): Promise<Array<File>> {
   const items = dataTransfer.items;
   const files: File[] = [];
 

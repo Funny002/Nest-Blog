@@ -1,0 +1,34 @@
+.qrCode {
+  width: 100%;
+  height: 100%;
+
+  &-card {
+    width: 100%;
+    line-height: 0;
+    position: relative;
+    text-align: center;
+    display: inline-table;
+  }
+
+  &-button {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    position: absolute;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, .2);
+  }
+
+  &-canvas {
+    line-height: 0;
+    display: inline-block;
+  }
+
+  &-description {
+    padding-top: 16px;
+    text-align: center;
+  }
+}

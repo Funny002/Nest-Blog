@@ -13,6 +13,15 @@ export function hasType(target: any, ...args: string[]): boolean {
   return args.map(v => v.toLocaleLowerCase()).includes(getType(target, true));
 }
 
+export function isEmpty(target: any): boolean {
+  let status = target === null || target === undefined || target === '';
+  if (status) return true;
+  if (hasType(target, 'array', 'object')) {
+    status = Object.keys(target).length === 0;
+  }
+  return status;
+}
+
 export function ObjectOmit<T = Record<string, any>, V = Array<string>>(target: T, omits: V): Omit<T, V> {
   const newValue = Object.assign({}, target);
   for (const key of omits) {
@@ -28,6 +37,21 @@ export function ObjectPick<T = Record<string, any>, V = Array<string>>(target: T
     if (keys in target) value[keys] = target[keys];
     return value;
   }, {});
+}
+
+export function MergeOptions<T = Record<string, any>, V = Record<string, any>>(target: T, ...options: Array<V>): T {
+  return options.reduce(function (prev: T, option: V) {
+    if (isEmpty(option)) return prev;
+    for (const key of Object.keys(option)) {
+      const value = option[key];
+      if (hasType(value, 'object') && hasType(prev[key], 'object')) {
+        prev[key] = MergeOptions(prev[key], value);
+      } else {
+        prev[key] = value;
+      }
+    }
+    return prev;
+  }, Object.assign({}, target));
 }
 
 export function listToTree(target: any[], key = 'id', parent = 'parent') {

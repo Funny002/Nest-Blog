@@ -1,12 +1,12 @@
-export function document(func: any, timeout = 300) {
+export function debounce(func: any, timeout = 300): (...args: any[]) => void {
   let state: NodeJS.Timeout;
   return function (...args: any[]) {
-    state && clearTimeout(state);
+    if (state) clearTimeout(state);
     state = setTimeout(() => func(...args), timeout);
   };
 }
 
-export function throttle(func: any, timeout = 300, before?: (...args: any[]) => any[]) {
+export function throttle(func: any, timeout = 300, before?: (...args: any[]) => any[]): (...args: any[]) => void {
   let state: boolean = false;
   return function (...args: any[]) {
     if (state) return;
