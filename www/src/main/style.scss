@@ -1,12 +1,33 @@
+:root {
+  --var-corlo: #606266;
+  --var-scrollbar-size: 8px;
+  --var-background-color: #f2f4f7;
+  --var-scrollbar-corlo: var(--el-border-color, #c8c8c8);
+  --var-scrollbar-background-corlo: var(--var-background-color);
+}
+
+::-webkit-scrollbar {
+  width: var(--var-scrollbar-size);
+  height: var(--var-scrollbar-size);
+
+  &-thumb {
+    border-radius: var(--var-scrollbar-size);
+    background-color: var(--var-scrollbar-corlo);
+  }
+
+  &-corner {
+    background-color: var(--var-scrollbar-background-corlo);
+  }
+
+  &-track-piece {
+    background-color: var(--var-scrollbar-background-corlo);
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-:root {
-  --var-corlo: #606266;
-  --var-background-color: #f2f4f7;
 }
 
 body {

@@ -1,28 +1,50 @@
 <template>
-  Home
-  <div ref="testRef"></div>
-  <el-button @click="onGetFile">获取图片</el-button>
+  <header class="home-header">
+    <el-button class="home-header-logo" link @click.stop="() => router.push('/')">
+      <img style="width: 24px; display: inline-block;" src="/vite.svg" alt="logo"/>
+      <span style="padding-left: 4px; font-weight: bold;">Nest Blog</span>
+    </el-button>
+    <span style="margin: 0 auto;"></span>
+    <el-input class="home-header-search" :prefix-icon="Search"></el-input>
+    <el-button link style="margin-left: 16px;" @click.stop="() => router.push('/sign')" title="Login">
+      <el-avatar :size="30">
+        <el-icon>
+          <user-filled/>
+        </el-icon>
+      </el-avatar>
+    </el-button>
+    <!--    <el-popover>-->
+    <!--      <template #reference>-->
+    <!--        <el-button link style="margin-left: 16px;">-->
+    <!--          <el-avatar :size="30" src="/vite.svg"></el-avatar>-->
+    <!--        </el-button>-->
+    <!--      </template>-->
+    <!--      <div class="">-->
+    <!--        <el-button link>切换用户</el-button>-->
+    <!--        <el-button link>退出登录</el-button>-->
+    <!--      </div>-->
+    <!--    </el-popover>-->
+  </header>
+  <div class="home-header__background" :style="{'--header-background': `url('/headerBackgroundImg.png')`}"></div>
+  <aside class="home-side-bar">
+    home-side-bar
+  </aside>
+  <main class="home-center">
+    <router-view/>
+  </main>
 </template>
 
-<script lang="ts">export default { name: 'Home' };</script>
+<script lang="ts">export default { name: 'HomeApp' };</script>
 <script lang="ts" setup>
-import { getFile, FileToBase64, toImage, base64ToFile } from '@utils/file';
-import { ref } from 'vue';
+import { Search, UserFilled } from '@element-plus/icons-vue';
+import { onBeforeMount, onUnmounted } from 'vue';
+import { useRouter } from 'vue-router';
 
-const testRef = ref<HTMLElement>();
+const router = useRouter();
+const App = document.querySelector('#app');
 
-function onGetFile() {
-  getFile().then(file => {
-    appendChildImage(file);
-    FileToBase64(file).then(base64 => {
-      appendChildImage(base64ToFile('text', base64));
-    });
-  });
-}
-
-function appendChildImage(file: File) {
-  toImage(file).then(img => {
-    testRef.value.appendChild(img);
-  });
-}
+onBeforeMount(() => App.classList.add('home'));
+onUnmounted(() => App.classList.remove('home'));
 </script>
+
+<style lang="scss" src="./style/index.scss"></style>

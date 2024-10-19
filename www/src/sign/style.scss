@@ -1,25 +1,33 @@
-#Sign.sign {
+#app.sign {
   width: 100vw;
   height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
-#Sign .sign {
+#app.sign .sign {
   &-header,
   &-footer {
-    display: none;
     flex: 0 0 auto;
   }
 
-  &—header {
-  }
-
-  &-footer {
+  &-header {
+    height: 40px;
+    display: flex;
+    padding: 0 16px;
+    align-items: center;
+    background-color: #fff;
+    box-sizing: content-box;
+    border-bottom: 1px solid var(--el-border-color);
   }
 
   &-content {
     flex: 2 2 auto;
+  }
+
+  &-header-logo {
+    display: flex;
+    align-items: center;
   }
 }
 
@@ -37,6 +45,7 @@
 
 #SignBox .signBox {
   &-title {
+    user-select: none;
     text-align: center;
     margin-bottom: 16px;
   }
