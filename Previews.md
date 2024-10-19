@@ -3,8 +3,11 @@
 
 Preview images and designs may vary somewhat and are for reference only.
 
-### [Sign In]( ./previews/Sign%20in.png)
-<img style="width: 150px;" src="./previews/Sign%20in.png" alt="sign in">
+### [Sign In](./previews/sign%20in-up/Sign%20in.png)
+<img style="width: 150px;" src="./previews/sign%20in-up/Sign%20in.png" alt="sign in">
 
-### [Sign Up]( ./previews/Sign%20up.png) 
-<img style="width: 150px;" src="./previews/Sign%20up.png" alt="sign up">
+### [Sign Up](./previews/sign%20in-up/Sign%20up.png) 
+<img style="width: 150px;" src="./previews/sign%20in-up/Sign%20up.png" alt="sign up">
+
+### [Home](./previews/home/Home.png)
+<img style="width: 150px;" src="./previews/home/Home.png" alt="home">
