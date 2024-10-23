@@ -31,6 +31,8 @@
   </aside>
   <main class="home-center">
     <router-view/>
+    {{ App.clientWidth }}
+    {{ App.clientHeight }}
   </main>
 </template>
 

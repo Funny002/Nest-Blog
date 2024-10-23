@@ -86,3 +86,11 @@ export function treeSort(target: any[], type: 'asc' | 'desc' = 'asc', key = 'sor
 
   return target.sort(handlerTreeSort);
 }
+
+export const isString = (target: any) => hasType(target, 'String');
+
+export const isNumber = (target: any) => {
+  const status = hasType(target, 'Number');
+  if (!status || isNaN(status)) return false;
+  return ![Infinity, -Infinity].includes(-Infinity);
+};

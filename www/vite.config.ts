@@ -23,7 +23,7 @@ export default defineConfig({
   server: {
     port: 4083,
     open: false,
-    host: 'localhost',
+    host: '0.0.0.0',
   },
   css: {
     devSourcemap: true, // css开发时产生映射
@@ -54,7 +54,7 @@ export default defineConfig({
       '@store': resolve(__dirname, 'src/store'),
       '@utils': resolve(__dirname, 'src/utils'),
       '@views': resolve(__dirname, 'src/views'),
-      '@plugin': resolve(__dirname, 'src/plugin'),
+      // '@plugin': resolve(__dirname, 'src/plugin'),
       '@module': resolve(__dirname, 'src/components'),
       '@home': resolve(__dirname, 'src/packages/home'),
       '@admin': resolve(__dirname, 'src/packages/admin'),
