@@ -1,21 +1,5 @@
-#app.home .home {
-  &-header {
-    width: 100vw;
-    height: 40px;
-    display: flex;
-    z-index: 1000;
-    position: fixed;
-    padding: 0 16px;
-    align-items: center;
-    backdrop-filter: blur(3px);
-    background-color: rgba(255, 255, 255, .4);
-
-    &-search {
-      width: 200px;
-    }
-  }
-
-  &-header__background {
+#app.home {
+  div.home-background {
     width: 100vw;
     height: 240px;
     pointer-events: none;
@@ -26,10 +10,106 @@
     border-bottom: 1px solid var(--el-border-color);
   }
 
-  &-center {
-    width: 1024px;
-    margin: 0 auto;
+  /* ======================== HEADER ======================== */
+  header.home-header {
+    width: 100vw;
+    height: 40px;
+    display: flex;
+    z-index: 1000;
+    position: fixed;
+    padding: 0 16px;
+    align-items: center;
+    backdrop-filter: blur(3px);
+    background-color: rgba(255, 255, 255, .4);
+
+    .home-header {
+      &-logo {
+        > img {
+          width: 24px;
+          display: inline-block;
+        }
+
+        > span {
+          padding-left: 4px;
+          font-weight: bold;
+        }
+      }
+
+      &-button {
+
+      }
+    }
+  }
+
+  /* ======================== CONTENT ======================== */
+  main.home-content {
+    padding: 16px;
+    display: flex;
+    margin-top: -80px;
+    justify-content: center;
+
+    .home-content {
+      &-body {
+        width: 100%;
+        flex: 1 1 auto;
+        margin-left: 16px;
+        max-width: 1024px;
+        border-radius: 8px;
+        background-color: #fff;
+        border: 1px solid var(--el-border-color);
+        box-shadow: 1px 1px 3px var(--el-border-color);
+      }
+    }
+  }
+
+  /* ======================== ASIDE ======================== */
+  aside.home-sideBar {
+    width: 140px;
+    flex: 0 0 auto;
+    padding: 8px 16px;
+    border-radius: 4px;
     background-color: #fff;
     border: 1px solid var(--el-border-color);
+    box-shadow: 1px 1px 3px var(--el-border-color);
+
+    .home-sideBar {
+      &-list {
+        margin-top: 8px;
+      }
+
+      &-title {
+        font-size: 12px;
+        color: var(--el-color-info);
+      }
+
+      &-box {
+        display: flex;
+        padding: 4px 0;
+        align-items: start;
+        flex-direction: column;
+      }
+
+      &-item {
+        margin: 0;
+        width: 100%;
+        font-size: 14px;
+        justify-content: flex-start;
+      }
+    }
+  }
+
+  /* ======================== FOOTER ======================== */
+  footer.home-footer {
+    padding: 16px 0;
+
+    > * + * {
+      margin-top: 16px;
+    }
+
+    .home-footer {
+      &-copyright {
+        text-align: center;
+      }
+    }
   }
 }
