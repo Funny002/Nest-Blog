@@ -60,12 +60,12 @@
 
     .var-home-content {
       &-body {
-        width: 100%;
         flex: 1 1 auto;
         margin-left: 16px;
         max-width: 1024px;
         border-radius: 8px;
         background-color: #fff;
+        width: calc(100% - 156px);
         border: 1px solid var(--el-border-color);
         box-shadow: 1px 1px 3px var(--el-border-color);
       }
