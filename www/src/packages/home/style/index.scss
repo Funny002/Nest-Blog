@@ -1,5 +1,5 @@
-#app.home {
-  div.home-background {
+#app.var-home {
+  div.var-home-background {
     width: 100vw;
     height: 240px;
     pointer-events: none;
@@ -11,7 +11,7 @@
   }
 
   /* ======================== HEADER ======================== */
-  header.home-header {
+  header.var-home-header {
     width: 100vw;
     height: 40px;
     display: flex;
@@ -22,8 +22,8 @@
     backdrop-filter: blur(3px);
     background-color: rgba(255, 255, 255, .4);
 
-    .home-header {
-      &-logo {
+    .var-home-header {
+      &-logo > span {
         > img {
           width: 24px;
           display: inline-block;
@@ -36,19 +36,29 @@
       }
 
       &-button {
+        height: 30px;
+        display: flex;
+        padding: 0 8px;
+        cursor: pointer;
+        border-radius: 4px;
+        align-items: center;
+        justify-content: center;
 
+        &:hover {
+          background-color: rgba(0, 0, 0, .1);
+        }
       }
     }
   }
 
   /* ======================== CONTENT ======================== */
-  main.home-content {
+  main.var-home-content {
     padding: 16px;
     display: flex;
     margin-top: -80px;
     justify-content: center;
 
-    .home-content {
+    .var-home-content {
       &-body {
         width: 100%;
         flex: 1 1 auto;
@@ -63,7 +73,7 @@
   }
 
   /* ======================== ASIDE ======================== */
-  aside.home-sideBar {
+  aside.var-home-sideBar {
     width: 140px;
     flex: 0 0 auto;
     padding: 8px 16px;
@@ -72,7 +82,7 @@
     border: 1px solid var(--el-border-color);
     box-shadow: 1px 1px 3px var(--el-border-color);
 
-    .home-sideBar {
+    .var-home-sideBar {
       &-list {
         margin-top: 8px;
       }
@@ -99,14 +109,14 @@
   }
 
   /* ======================== FOOTER ======================== */
-  footer.home-footer {
+  footer.var-home-footer {
     padding: 16px 0;
 
     > * + * {
       margin-top: 16px;
     }
 
-    .home-footer {
+    .var-home-footer {
       &-copyright {
         text-align: center;
       }

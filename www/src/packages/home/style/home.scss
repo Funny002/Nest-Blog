@@ -1,0 +1,34 @@
+.home {
+  padding: 16px 0;
+
+  &-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+
+    &-value {
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    &-divider {
+      height: 1em;
+      margin: 0 4px;
+      display: inline-block;
+      transform: rotate(20deg);
+      border-left: 2px solid var(--el-border-color);
+    }
+
+    &-label {
+      color: var(--el-text-color-secondary);
+    }
+  }
+
+  &-article {
+    padding: 0 16px;
+
+    > * + * {
+      margin-top: 16px;
+    }
+  }
+}

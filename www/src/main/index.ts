@@ -1,20 +1,16 @@
-import * as Utils from '@utils/object';
 import { setupRouter } from '../router';
+import * as Utils from '@utils/object';
 import { createPinia } from 'pinia';
 import { createApp } from 'vue';
 import Main from './index.vue';
 
 class BaseConfig {
   __options: Partial<BaseConfigOption>;
+  title: string = 'Doc Title';
 
-  constructor(options?: Partial<BaseConfigOption>) {
-    const defaultConfig = {
-      base: '/',
-      scheme: false,
-      host: undefined,
-      port: undefined,
-    };
-    this.__options = Utils.MergeOptions<BaseConfigOption>(defaultConfig, options || {});
+  constructor(title: string, options?: Partial<BaseConfigOption>) {
+    this.title = title;
+    this.__options = options || {};
     Object.defineProperty(this, '__options', { enumerable: false });
   }
 
@@ -51,7 +47,7 @@ class BaseConfig {
 }
 
 async function bootstrap() {
-  window.__CONFIG__ = new BaseConfig(); // config
+  window.__CONFIG__ = new BaseConfig('Nest Blog'); // config
   const app = createApp(Main); // app
   app.use(createPinia());  // pinia
   await setupRouter(app); // router

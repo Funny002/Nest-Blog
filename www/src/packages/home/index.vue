@@ -1,11 +1,11 @@
 <template>
-  <header class="home-header">
-    <el-button class="home-header-logo" link @click.stop="() => router.push('/')">
+  <header class="var-home-header">
+    <el-button class="var-home-header-logo" link @click.stop="() => router.push('/')">
       <img src="/vite.svg" alt="logo"/>
-      <span>Nest Blog</span>
+      <span>{{ title }}</span>
     </el-button>
     <span style="margin: 0 auto;"></span>
-    <div class="home-header-button">
+    <div class="var-home-header-button">
       <bootstrap-icon name="search"/>
     </div>
     <el-button link style="margin-left: 16px;" @click.stop="() => router.push('/sign')" title="Login">
@@ -25,16 +25,16 @@
     <!--      </div>-->
     <!--    </el-popover>-->
   </header>
-  <div class="home-background" :style="{'--header-background': `url('/headerBackgroundImg.png')`}"></div>
-  <main class="home-content">
-    <el-affix class="home-sideBar-affix" :offset="100" style="width: 140px;">
-      <aside class="home-sideBar">
+  <div class="var-home-background" :style="{'--header-background': `url('/headerBackgroundImg.png')`}"></div>
+  <main class="var-home-content">
+    <el-affix class="var-home-sideBar-affix" :offset="100" style="width: 140px;">
+      <aside class="var-home-sideBar">
         <template v-for="type in data.list">
-          <div class="home-sideBar-list" v-if="(data[type] || []).length">
-            <div class="home-sideBar-title">{{ type.toUpperCase() }}</div>
-            <div class="home-sideBar-box">
+          <div class="var-home-sideBar-list" v-if="(data[type] || []).length">
+            <div class="var-home-sideBar-title">{{ type.toUpperCase() }}</div>
+            <div class="var-home-sideBar-box">
               <template v-for="item in (data[type] || [])">
-                <el-button class="home-sideBar-item" text @click.stop="onClick(type, item)">
+                <el-button class="var-home-sideBar-item" text @click.stop="onClick(type, item)">
                   {{ item.label }}
                   <template #icon v-if="item.icon">
                     <bootstrap-icon :name="item.icon"/>
@@ -46,13 +46,13 @@
         </template>
       </aside>
     </el-affix>
-    <div class="home-content-body">
+    <div class="var-home-content-body" id="main">
       <router-view/>
     </div>
   </main>
-  <footer class="home-footer">
+  <footer class="var-home-footer">
     <el-divider style="margin:0;"/>
-    <h4 class="home-footer-copyright">© Copyright 2023 By Nest Blog</h4>
+    <h4 class="var-home-footer-copyright">© Copyright All By {{ title }}</h4>
   </footer>
 </template>
 
@@ -64,6 +64,7 @@ import { useRouter } from 'vue-router';
 import { reactive } from 'vue';
 
 const router = useRouter();
+const title = window.__CONFIG__.title;
 const App = document.querySelector('#app');
 
 const data = reactive({
@@ -88,8 +89,8 @@ function onClick(type: 'browse' | 'category' | 'page', item: Record<string, any>
   console.log(item);
 }
 
-onBeforeMount(() => App.classList.add('home'));
-onUnmounted(() => App.classList.remove('home'));
+onBeforeMount(() => App.classList.add('var-home'));
+onUnmounted(() => App.classList.remove('var-home'));
 </script>
 
 <style lang="scss" src="./style/index.scss"></style>

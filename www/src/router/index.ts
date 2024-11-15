@@ -7,6 +7,7 @@ const router = createRouter({
 });
 
 router.beforeEach(async function (to, from, next) {
+  document.title = window.__CONFIG__.title;
   console.log(to);
   next();
 });

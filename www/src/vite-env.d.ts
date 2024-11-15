@@ -3,6 +3,7 @@ interface BaseConfigOption {
   host: string;
   port: number;
   base: string;
+  title: string;
   baseApi: string;
   tags: undefined | string;
   scheme: 'http' | 'https' | boolean;
