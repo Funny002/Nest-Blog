@@ -30,11 +30,11 @@
   </article>
 </template>
 
-<script lang="ts">export default { name: 'ArticleItem' };</script>
+<script lang="ts">export default {name: 'ArticleItem'};</script>
 <script setup lang="ts">
-import { BootstrapIcon } from '@module/BootstrapIcon';
-import { formatDate } from '@utils/date';
-import { defineProps } from 'vue';
+import {BootstrapIcon} from '@module/BootstrapIcon';
+import {formatDate} from '@utils/date';
+import {defineProps} from 'vue';
 
 interface Props {
   date: number;

@@ -9,7 +9,11 @@ interface BaseConfigOption {
   scheme: 'http' | 'https' | boolean;
 }
 
-type VarStorageEvent = CustomEvent<{ type: 'set' | 'remove'; prefix: string; key: string; value?: any; } | { type: 'clear', prefix: string; keys: string[] }>
+type VarStorageEvent = CustomEvent<{ type: 'set' | 'remove'; prefix: string; key: string; value?: any; } | {
+  type: 'clear',
+  prefix: string;
+  keys: string[]
+}>
 
 type Fields = FieldItem | FieldSlot;
 type FieldSlot = { slot: string; } & FieldBase;
