@@ -22,30 +22,30 @@ export function isEmpty(target: any): boolean {
   return status;
 }
 
-export function ObjectOmit<T = Record<string, any>, V = Array<string>>(target: T, omits: V): Omit<T, V> {
+export function ObjectOmit(target: Record<string, any>, omits: Array<string>): Record<string, any> {
   const newValue = Object.assign({}, target);
   for (const key of omits) {
-    if (key in newValue) {
+    if (newValue.hasOwnProperty(key)) {
       delete newValue[key];
     }
   }
   return newValue;
 }
 
-export function ObjectPick<T = Record<string, any>, V = Array<string>>(target: T, array: V): Pick<T, V> {
-  return array.reduce(function (value: Record<string, any>, keys: string) {
+export function ObjectPick(target: Record<string, any>, picks: Array<string>): Record<string, any> {
+  return picks.reduce(function (value: Record<string, any>, keys: string) {
     if (keys in target) value[keys] = target[keys];
     return value;
   }, {});
 }
 
-export function MergeOptions<T = Record<string, any>, V = Record<string, any>>(target: T, ...options: Array<V>): T {
-  return options.reduce(function (prev: T, option: V) {
+export function MergeOption(target: Record<string, any>, ...options: Array<Record<string, any>>): Record<string, any> {
+  return options.reduce(function (prev: Record<string, any>, option: Record<string, any>) {
     if (isEmpty(option)) return prev;
     for (const key of Object.keys(option)) {
       const value = option[key];
       if (hasType(value, 'object') && hasType(prev[key], 'object')) {
-        prev[key] = MergeOptions(prev[key], value);
+        prev[key] = MergeOption(prev[key], value);
       } else {
         prev[key] = value;
       }
@@ -54,7 +54,7 @@ export function MergeOptions<T = Record<string, any>, V = Record<string, any>>(t
   }, Object.assign({}, target));
 }
 
-export function listToTree(target: any[], key = 'id', parent = 'parent') {
+export function listToTree(target: any[], key = 'id', parent = 'parent'): Array<Record<string, any>> {
   const roots: any[] = [];
   const map = target.reduce(function (value: { [k: string]: any }, item: any) {
     value[item[key]] = item;
@@ -72,7 +72,7 @@ export function listToTree(target: any[], key = 'id', parent = 'parent') {
   return roots;
 }
 
-export function treeSort(target: any[], type: 'asc' | 'desc' = 'asc', key = 'sort', children = 'children') {
+export function treeSort(target: Array<Record<string, any>>, type: 'asc' | 'desc' = 'asc', key = 'sort', children = 'children'): Array<Record<string, any>> {
   function handlerTreeSort(a: any, b: any) {
     return type === 'asc' ? a[key] - b[key] : b[key] - a[key];
   }
@@ -87,10 +87,9 @@ export function treeSort(target: any[], type: 'asc' | 'desc' = 'asc', key = 'sor
   return target.sort(handlerTreeSort);
 }
 
-export const isString = (target: any) => hasType(target, 'String');
+export const isString = (target: any): boolean => hasType(target, 'String');
 
-export const isNumber = (target: any) => {
-  const status = hasType(target, 'Number');
-  if (!status || isNaN(status)) return false;
+export const isNumber = (target: any): boolean => {
+  if (!hasType(target, 'Number') || isNaN(target)) return false;
   return ![Infinity, -Infinity].includes(-Infinity);
 };

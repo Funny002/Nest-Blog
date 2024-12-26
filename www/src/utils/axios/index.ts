@@ -1,7 +1,7 @@
-import axios, { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, CancelTokenSource, CreateAxiosDefaults } from 'axios';
-import { AxiosTools, AxiosToolsConfig } from './tools';
-import { UsersStore } from '@store/Users';
-import { App } from 'vue';
+import axios, {AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, CancelTokenSource, CreateAxiosDefaults} from 'axios';
+import {AxiosTools, AxiosToolsConfig} from './tools';
+import {UsersStore} from '@store/Users';
+import {App} from 'vue';
 
 export interface AxiosConfig extends AxiosToolsConfig {
   cancelKeys: string;
@@ -21,7 +21,7 @@ export class Axios {
     this.manage = new Map();
     this.handleRequest = request;
     //
-    this.axios = axios.create({ ...(options || {}), timeout: 3000, headers: { 'content-type': 'application/json' } });
+    this.axios = axios.create({...(options || {}), timeout: 3000, headers: {'content-type': 'application/json'}});
     this.request = new AxiosTools(this.axios, 'request', this.requestFulfilled.bind(this), this.requestRejected.bind(this));
     this.response = new AxiosTools(this.axios, 'response', this.responseFulfilled.bind(this), this.responseRejected.bind(this));
   }
@@ -37,7 +37,9 @@ export class Axios {
     config.__retry_count = config.__retry_count || 1;
 
     if (!config.params) config.params = {};
-    config.headers['Authorization'] = 'token ' + UsersStore().accessToken;
+
+    const accessToken = UsersStore().accessToken;
+    if (accessToken) config.headers['Authorization'] = 'token ' + accessToken;
 
     return (this.handleRequest && await this.handleRequest(config)) || config;
   }
@@ -53,14 +55,14 @@ export class Axios {
   }
 
   private responseRejected(error: AxiosError & { config: AxiosConfig }) {
-    const { config, response } = error;
+    const {config, response} = error;
     if (!config) return Promise.reject(error);
     this.manage.delete(config.cancelKeys);
 
     let retryState = Boolean(response === undefined || response.status === 408 || response.status === 500);
     if (!retryState) return Promise.reject(error);
 
-    let { __retry_count, __retry_time, __retry_max } = config;
+    let {__retry_count, __retry_time, __retry_max} = config;
     __retry_count = isNaN(__retry_count) ? 1 : __retry_count;
     __retry_time = isNaN(__retry_time) ? 500 : __retry_time;
     __retry_max = isNaN(__retry_max) ? 3 : __retry_max;
@@ -93,12 +95,10 @@ export class Axios {
   }
 }
 
-const defaultAxios = new Axios();
-
-export default defaultAxios;
-
-export const axios = defaultAxios.axios;
+export const defaultAxios = new Axios();
 
 export function useAxios(app: App<Element>) {
   app.config.globalProperties.$axios = defaultAxios.axios;
 }
+
+export default defaultAxios.axios;

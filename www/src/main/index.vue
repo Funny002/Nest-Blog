@@ -1,26 +1,22 @@
 <template>
-  <el-config-provider v-bind="ConfigProvider">
+  <el-config-provider v-bind="elementProps">
     <router-view/>
   </el-config-provider>
 </template>
 
-<script lang="ts">export default { name: 'Main' };</script>
-<script setup lang="ts">
-import { reactive } from 'vue';
-import zhCN from 'element-plus/dist/locale/zh-cn.mjs';
+<script lang="ts">export default {name: 'Nest Blog'};</script>
 
-const ConfigProvider = reactive({
-  locale: zhCN,
-  // size: 'small',
-  valueOnClear: null,
-  button: {
-    autoInsertSpace: true,
-  },
-  message: {
-    duration: 3,
-    grouping: true,
-  },
+<script lang="ts" setup>
+import {useThemeStore} from '../sotre/theme.ts';
+import {storeToRefs} from 'pinia';
+import {onBeforeMount} from 'vue';
+
+const themeStore = useThemeStore();
+const {elementProps} = storeToRefs(themeStore);
+//
+onBeforeMount(() => {
+  themeStore.setLocale('zh');
 });
 </script>
 
-<style lang="scss" src="./style.scss"/>
+<style lang="sass" src="./style.scss"></style>

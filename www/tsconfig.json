@@ -39,6 +39,6 @@
       "@admin/*": ["src/packages/admin/*"]
     }
   },
-  "include": ["src/**/*.{ts,vue}", "src/*.d.ts"],
+  "include": ["src/**/*.ts", "src/**/*.vue", "src/**/*.d.ts", "**/*.d.ts"],
   "references": [{"path": "./tsconfig.node.json"}]
 }

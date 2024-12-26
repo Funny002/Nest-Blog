@@ -12,10 +12,10 @@ export function base64ToFile(filename: string, base64: string): File {
   const [_, mimeType, string] = base64.match(/^data:([^;]+);base64,(.+)$/);
   const value = atob(string);
   const buffer = new Uint8Array(value.length);
-  for (const i in value) {
+  for (let i = 0, len = value.length; i < len; i++) {
     buffer[i] = value.charCodeAt(i);
   }
-  return new File([buffer], filename, { type: mimeType });
+  return new File([buffer], filename, {type: mimeType});
 }
 
 export function toImage(value: File | string): Promise<HTMLImageElement> {
@@ -43,7 +43,7 @@ export function getFile(): Promise<File> {
   });
 }
 
-export function getDragFile({ dataTransfer }: { dataTransfer: DataTransfer }): Promise<Array<File>> {
+export function getDragFile({dataTransfer}: { dataTransfer: DataTransfer }): Array<File> {
   const items = dataTransfer.items;
   const files: File[] = [];
 
@@ -67,5 +67,6 @@ export function getDragFile({ dataTransfer }: { dataTransfer: DataTransfer }): P
     const item = items[i].webkitGetAsEntry();
     if (item) traverseFileTree(item);
   }
+
   return files;
 }

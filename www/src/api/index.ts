@@ -1,1 +1,0 @@
-export * as Sign from './Sign';
