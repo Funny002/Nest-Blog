@@ -6,7 +6,7 @@
   </modules-input>
 </template>
 
-<script lang="ts">export default { name: 'DynamicForm-Text', inheritAttrs: false };</script>
+<script lang="ts">export default {name: 'DynamicForm-Text', inheritAttrs: false};</script>
 <script lang="ts" setup>
 import ModulesInput from './input.vue';
 
@@ -14,7 +14,7 @@ const props = withDefaults(defineProps<{ text?: string; click?: Function; }>(), 
   text: 'ButtonText',
 });
 
-const onClick = (event: Event) => props?.click(event);
+const onClick = (event: Event) => props.click && props.click(event);
 </script>
 
 <style lang="scss" scoped>

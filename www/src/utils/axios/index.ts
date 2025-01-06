@@ -1,7 +1,8 @@
-import axios, {AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, CancelTokenSource, CreateAxiosDefaults} from 'axios';
-import {AxiosTools, AxiosToolsConfig} from './tools';
-import {UsersStore} from '@store/Users';
-import {App} from 'vue';
+import type { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, CancelTokenSource, CreateAxiosDefaults } from 'axios';
+import type { AxiosToolsConfig } from './tools.ts';
+import { UsersStore } from '@store/users';
+import { AxiosTools } from './tools';
+import axios from 'axios';
 
 export interface AxiosConfig extends AxiosToolsConfig {
   cancelKeys: string;
@@ -97,7 +98,7 @@ export class Axios {
 
 export const defaultAxios = new Axios();
 
-export function useAxios(app: App<Element>) {
+export function useAxios(app: any) {
   app.config.globalProperties.$axios = defaultAxios.axios;
 }
 

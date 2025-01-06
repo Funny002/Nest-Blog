@@ -1,4 +1,4 @@
-import {i18n, setLocale} from '../locale/locale.ts';
+import {i18n, setLocale} from '../locale/locale';
 import {defineStore} from 'pinia';
 
 const localeMap: Record<string, string> = {

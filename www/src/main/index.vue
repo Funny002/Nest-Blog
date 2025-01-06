@@ -7,7 +7,7 @@
 <script lang="ts">export default {name: 'Nest Blog'};</script>
 
 <script lang="ts" setup>
-import {useThemeStore} from '../sotre/theme.ts';
+import {useThemeStore} from '@store/theme.ts';
 import {storeToRefs} from 'pinia';
 import {onBeforeMount} from 'vue';
 

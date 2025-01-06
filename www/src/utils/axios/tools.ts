@@ -1,4 +1,4 @@
-import { AxiosInstance } from 'axios';
+import type { AxiosInstance } from 'axios';
 
 export type AxiosToolsType = 'request' | 'response';
 
@@ -16,18 +16,18 @@ export class AxiosTools {
   private readonly config: AxiosToolsConf;
 
   constructor(axios: AxiosInstance, types: AxiosToolsType, onFulfilled: AxiosToolsOptions, onRejected: AxiosToolsOptions) {
-    this.config = { axios, types, onFulfilled, onRejected };
+    this.config = {axios, types, onFulfilled, onRejected};
     this.use();
   }
 
   use() {
-    const { axios, types, onFulfilled, onRejected } = this.config;
+    const {axios, types, onFulfilled, onRejected} = this.config;
     if (this.state !== undefined) this.eject();
     this.state = axios.interceptors[types].use(onFulfilled, onRejected);
   }
 
   eject() {
-    const { axios, types } = this.config;
+    const {axios, types} = this.config;
     if (this.state !== undefined) {
       axios.interceptors[types].eject(this.state);
     }

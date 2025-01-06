@@ -10,27 +10,26 @@
   </el-form>
 </template>
 
-<script lang="ts">export default { name: 'DynamicForm' };</script>
+<script lang="ts">export default {name: 'DynamicForm'};</script>
 <script setup lang="ts">
 import { computed, getCurrentInstance, provide } from 'vue';
+import type { ComponentInternalInstance } from 'vue';
 import DynamicFormItem from './DynamicFormItem.vue';
-import type { ElForm, ElRow } from 'element-plus';
+import { ElForm, ElRow } from 'element-plus';
 import { Modules } from './modules';
 
 interface Props {
-  rowProps?: ElRow;
-  formProps?: ElForm;
-  fields?: Array<Fields>;
+  rowProps?: typeof ElRow;
+  formProps?: typeof ElForm;
   modules?: Record<string, any>;
   modelValue?: Record<string, any>;
+  fields?: Array<Record<string, any>>;
 }
 
-const { slots } = getCurrentInstance();
+const {slots} = getCurrentInstance() as ComponentInternalInstance;
 const props = withDefaults(defineProps<Props>(), {
   fields: () => ([]),
   modules: () => ({}),
-  rowProps: () => ({}),
-  formProps: () => ({}),
 });
 
 provide('$slots', computed(() => slots));

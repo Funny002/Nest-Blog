@@ -56,7 +56,7 @@
   </footer>
 </template>
 
-<script lang="ts">export default { name: 'HomeApp' };</script>
+<script lang="ts">export default {name: 'HomeApp'};</script>
 <script lang="ts" setup>
 import { BootstrapIcon } from '@module/BootstrapIcon';
 import { onBeforeMount, onUnmounted } from 'vue';
@@ -65,28 +65,28 @@ import { reactive } from 'vue';
 
 const router = useRouter();
 const title = window.__CONFIG__.title;
-const App = document.querySelector('#app');
+const App = document.querySelector('#app') as HTMLElement;
 
-const data = reactive({
+const data = reactive<Record<string, any>>({
   list: ['browse', 'category', 'page'],
   browse: [
-    { name: 'home', label: '首页', icon: 'house-fill' },
-    { name: 'search', label: '搜索', icon: 'search' },
+    {name: 'home', label: '首页', icon: 'house-fill'},
+    {name: 'search', label: '搜索', icon: 'search'},
   ],
   category: [
-    { name: '1', label: '分类一', icon: 'list', sort: 0 },
-    { name: '2', label: '分类一', icon: 'list', sort: 0 },
-    { name: '3', label: '分类一', icon: 'list', sort: 0 },
-    { name: '4', label: '分类一', icon: 'list', sort: 0 },
+    {name: '1', label: '分类一', icon: 'list', sort: 0},
+    {name: '2', label: '分类一', icon: 'list', sort: 0},
+    {name: '3', label: '分类一', icon: 'list', sort: 0},
+    {name: '4', label: '分类一', icon: 'list', sort: 0},
   ],
   page: [
-    { name: '1', label: '关于', icon: '' },
+    {name: '1', label: '关于', icon: ''},
   ],
 });
 
 function onClick(type: 'browse' | 'category' | 'page', item: Record<string, any>) {
   // router.push(`/category/${ item.name }`);
-  console.log(item);
+  console.log(type, item);
 }
 
 onBeforeMount(() => App.classList.add('var-home'));

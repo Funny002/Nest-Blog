@@ -8,26 +8,26 @@
   </el-form-item>
 </template>
 
-<script lang="ts">export default { name: 'DynamicForm-Input', inheritAttrs: false };</script>
+<script lang="ts">export default {name: 'DynamicForm-Input', inheritAttrs: false};</script>
 <script lang="ts" setup>
-import { computed, inject, Ref, shallowRef } from 'vue';
-import type { ElFormItem } from 'element-plus';
+import { computed, inject, shallowRef } from 'vue';
+import { ElFormItem } from 'element-plus';
 import { ObjectPick } from '@utils/object';
+import type { Ref } from 'vue';
 
 interface Props {
   prop?: string;
-  formItem?: ElFormItem;
   slots?: Record<string, any>;
+  formItem?: typeof ElFormItem;
   events?: Record<string, any>;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   slots: () => ({}),
   events: () => ({}),
-  formItem: () => ({}),
 });
 
-const defaultProps = { type: 'text', clearable: true };
+const defaultProps = {type: 'text', clearable: true};
 const ElInputProps = ['type',
   'maxlength',
   'minlength',
@@ -67,15 +67,18 @@ const ElInputProps = ['type',
 const onEnter = (event: Event) => props.events?.enter(event);
 const handlerBindProps = (attrs: Record<string, any>) => Object.assign(defaultProps, ObjectPick(attrs, ElInputProps));
 
-const changeItem = inject<Function>('change-item', () => {});
+const changeItem = inject<Function>('change-item', () => {
+});
 const modelValue = inject<Ref<Record<string, any>>>('$values', shallowRef({}));
 const values = computed({
   get() {
-    return modelValue.value[props.prop];
+    return props.prop ? modelValue.value[props.prop] : '';
   },
   set(value: any) {
-    changeItem(props.prop, value);
-    modelValue.value = Object.assign({}, modelValue.value, { [props.prop]: value });
+    if (props.prop) {
+      changeItem(props.prop, value);
+      modelValue.value = Object.assign({}, modelValue.value, {[props.prop]: value});
+    }
   },
 });
 </script>

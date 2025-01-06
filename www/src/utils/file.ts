@@ -9,7 +9,7 @@ export function FileToBase64(file: File): Promise<string> {
 }
 
 export function base64ToFile(filename: string, base64: string): File {
-  const [_, mimeType, string] = base64.match(/^data:([^;]+);base64,(.+)$/);
+  const [_, mimeType, string] = base64.match(/^data:([^;]+);base64,(.+)$/) as string[];
   const value = atob(string);
   const buffer = new Uint8Array(value.length);
   for (let i = 0, len = value.length; i < len; i++) {

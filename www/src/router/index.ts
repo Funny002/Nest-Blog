@@ -1,7 +1,6 @@
-import {createRouter, createWebHistory, useRoute} from 'vue-router';
-import {loadLocaleMessages} from '../locale/locale.ts';
-import {routes} from './routes';
-import {App} from 'vue';
+import { createRouter, createWebHistory, useRoute } from 'vue-router';
+import { loadLocaleMessages } from '../locale/locale.ts';
+import { routes } from './routes';
 
 const router = createRouter({
   history: createWebHistory(),
@@ -25,7 +24,7 @@ router.beforeEach(async function (to, _, next) {
   next();
 });
 
-export async function setupRouter(app: App) {
+export async function setupRouter(app: any) {
   app.use(router);
   await router.isReady();
   return app;

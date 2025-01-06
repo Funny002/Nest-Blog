@@ -12,21 +12,22 @@
   </div>
 </template>
 
-<script lang="ts">export default { name: 'QrCode' };</script>
+<script lang="ts">export default {name: 'QrCode'};</script>
 <script lang="ts" setup>
 import { computed, onMounted, reactive, watch } from 'vue';
-import { QrCode, QrCodeOptions } from './Tools';
-import type { ElButton } from 'element-plus';
+import type { QrCodeOptions } from './Tools.ts';
 import { MergeOptions } from '@utils/object';
+import { ElButton } from 'element-plus';
 import { debounce } from '@utils/limit';
+import { QrCode } from './Tools';
 
 interface Props {
   value: string;
   text?: string;
   click?: Function;
   expires?: number;
-  buttonProp?: ElButton;
   description?: string;
+  buttonProp?: typeof ElButton;
   options?: Partial<QrCodeOptions>;
 }
 
@@ -34,18 +35,21 @@ const props = withDefaults(defineProps<Props>(), {
   expires: 0,
   text: 'Refresh',
   options: () => ({}),
-  buttonProp: () => ({}),
 });
 
 const imgStyle = computed(() => {
   const width = (props.options || {}).width || 0;
   if (!width) return undefined;
-  return { width: width + 'px', height: width + 'px' };
+  return {width: width + 'px', height: width + 'px'};
 });
 
 const data = reactive({
   src: '',
   expires: 0,
+} as {
+  src: string;
+  expires: number;
+  timeout?: NodeJS.Timeout
 });
 
 const isExpires = computed(() => props.expires && data.expires >= props.expires);
@@ -83,7 +87,7 @@ function onCodeClick(event: Event) {
   emits('click', event);
 }
 
-defineExpose({ refresh: InstantRefresh });
+defineExpose({refresh: InstantRefresh});
 </script>
 
 <style lang="scss" src="./style.scss"></style>

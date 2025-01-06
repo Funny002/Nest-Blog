@@ -6,7 +6,7 @@
     </el-button>
   </div>
   <div class="sign-content">
-    <router-view v-slot="{ Component, route}">
+    <router-view v-slot="{ Component }">
       <keep-alive>
         <component :is="Component"/>
       </keep-alive>
@@ -15,13 +15,13 @@
   <div class="sign-footer" v-show="false">sign-footer</div>
 </template>
 
-<script lang="ts">export default { name: 'Sign' };</script>
+<script lang="ts">export default {name: 'Sign'};</script>
 <script lang="ts" setup>
 import { onBeforeMount, onUnmounted } from 'vue';
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
-const App = document.querySelector('#app');
+const App = document.querySelector('#app') as HTMLElement;
 
 onBeforeMount(() => App.classList.add('sign'));
 onUnmounted(() => App.classList.remove('sign'));

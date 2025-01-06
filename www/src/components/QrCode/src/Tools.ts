@@ -1,6 +1,7 @@
-import { QRCodeRenderersOptions, toDataURL } from 'qrcode';
+import type { QRCodeRenderersOptions } from 'qrcode';
 import { MergeOptions } from '@utils/object';
 import { toImage } from '@utils/file';
+import { toDataURL } from 'qrcode';
 
 type  QrCodeOptionsPosition = ['left' | 'center' | 'right' | number, 'top' | 'center' | 'bottom' | number]
 type base64String = string
@@ -23,8 +24,8 @@ export interface QrCodeOptions {
   background: File | base64String;
 }
 
-function handleOptions(options: Partial<QrCodeOptions> = {}): QrCodeOptions {
-  return MergeOptions<QrCodeOptions>({
+function handleOptions(options: Partial<QrCodeOptions> = {}) {
+  return MergeOptions({
     scale: 4,
     margin: 2,
     level: 'L',
@@ -44,8 +45,8 @@ function handleOptions(options: Partial<QrCodeOptions> = {}): QrCodeOptions {
 }
 
 function getQrCodeOptions(options: QrCodeOptions): QRCodeRenderersOptions {
-  const { scale, margin, width, level, dark, light } = options;
-  return { scale, margin, width, errorCorrectionLevel: level, color: { dark, light } };
+  const {scale, margin, width, level, dark, light} = options;
+  return {scale, margin, width, errorCorrectionLevel: level, color: {dark, light}};
 }
 
 function handlePosition(box: { width: number; height: number }, value: { width: number; height: number }, offset: [number, number], position: QrCodeOptionsPosition): { x: number; y: number; } {
@@ -69,11 +70,11 @@ function handlePosition(box: { width: number; height: number }, value: { width: 
     y = positionY;
   }
   //offset
-  return { x: x + offset[0], y: y + offset[1] };
+  return {x: x + offset[0], y: y + offset[1]};
 }
 
 export async function QrCode(value: string, config?: Partial<QrCodeOptions>): Promise<string> {
-  const options = handleOptions(config);
+  const options = handleOptions(config) as QrCodeOptions;
 
   // 生成图片
   const logo = options.logo ? await toImage(options.logo) : undefined;
@@ -95,12 +96,12 @@ export async function QrCode(value: string, config?: Partial<QrCodeOptions>): Pr
   }
 
   // 写入 qrcode
-  const qrcodePosition = handlePosition({ width, height }, qrcode, options.offset, options.position);
+  const qrcodePosition = handlePosition({width, height}, qrcode, options.offset, options.position);
   cxt.drawImage(qrcode, qrcodePosition.x, qrcodePosition.y, qrcode.width, qrcode.height);
 
   // 写入 logo
   if (logo) {
-    const logoPosition = handlePosition({ width, height }, logo, options.logoOffset, options.logoPosition);
+    const logoPosition = handlePosition({width, height}, logo, options.logoOffset, options.logoPosition);
     cxt.drawImage(logo, logoPosition.x, logoPosition.y, logo.width, logo.height);
   }
 

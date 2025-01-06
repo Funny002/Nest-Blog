@@ -2,7 +2,7 @@
 export {};
 
 declare global {
-  import {BaseConfig} from './main/config.ts';
+  import { BaseConfig } from './main/config.ts';
 
   type VarStorageEvent = CustomEvent<{ type: 'set' | 'remove'; prefix: string; key: string; value?: any; } | { type: 'clear', prefix: string; keys: string[] }>
 
@@ -19,11 +19,11 @@ declare global {
   interface UserInfo {
     id: number;
     name: string;
-    avatar: string;
+    role: string;
     email: string;
     phone: string;
-    role: string;
     token: string;
+    avatar: string;
   }
 
   interface Window {

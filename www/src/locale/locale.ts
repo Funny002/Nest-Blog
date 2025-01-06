@@ -1,7 +1,7 @@
-import {useThemeStore} from '../sotre/theme.ts';
-import {getRouterLocale} from '../router';
+import { useThemeStore } from '@store/theme';
+import { getRouterLocale } from '../router';
+import { createI18n } from 'vue-i18n';
 import storage from '@utils/storage';
-import {createI18n} from 'vue-i18n';
 
 const localeMessages = (function (modules: Record<string, any>) {
   return Object.keys(modules).reduce(function (prev: Record<string, any>, curr: string) {
