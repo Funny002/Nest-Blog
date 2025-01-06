@@ -1,0 +1,34 @@
+{
+  "extends": "@vue/tsconfig/tsconfig.dom.json",
+  "compilerOptions": {
+    "tsBuildInfoFile": "./node_modules/.tmp/tsconfig.app.tsbuildinfo",
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noUncheckedSideEffectImports": true,
+    /* Alias */
+    "baseUrl": "./",
+    "paths": {
+      "@api": ["src/api"],
+      "@store": ["src/store"],
+      "@utils": ["src/utils"],
+      "@views": ["src/views"],
+      "@plugin": ["src/plugin"],
+      "@module": ["src/components"],
+      "@home": ["src/packages/home"],
+      "@admin": ["src/packages/admin"],
+      /* Alias/$ */
+      "@api/*": ["src/api/*"],
+      "@store/*": ["src/store/*"],
+      "@utils/*": ["src/utils/*"],
+      "@views/*": ["src/views/*"],
+      "@plugin/*": ["src/plugin/*"],
+      "@module/*": ["src/components/*"],
+      "@home/*": ["src/packages/home/*"],
+      "@admin/*": ["src/packages/admin/*"]
+    }
+  },
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.vue", "test/**/*.test.ts"]
+}

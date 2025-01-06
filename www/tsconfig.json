@@ -1,44 +1,7 @@
 {
-  "compilerOptions": {
-    "target": "ES2020",
-    "module": "ESNext",
-    "skipLibCheck": true,
-    "useDefineForClassFields": true,
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
-    /* Bundler mode */
-    "allowImportingTsExtensions": true,
-    "moduleResolution": "bundler",
-    "moduleDetection": "force",
-    "isolatedModules": true,
-    "jsx": "preserve",
-    "noEmit": true,
-    /* Linting */
-    "strict": true,
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
-    "noFallthroughCasesInSwitch": true,
-    /* Alias */
-    "baseUrl": "./",
-    "paths": {
-      "@api": ["src/api"],
-      "@store": ["src/store"],
-      "@utils": ["src/utils"],
-      "@views": ["src/views"],
-      "@plugin": ["src/plugin"],
-      "@module": ["src/components"],
-      "@home": ["src/packages/home"],
-      "@admin": ["src/packages/admin"],
-      /* Alias/$ */
-      "@api/*": ["src/api/*"],
-      "@store/*": ["src/store/*"],
-      "@utils/*": ["src/utils/*"],
-      "@views/*": ["src/views/*"],
-      "@plugin/*": ["src/plugin/*"],
-      "@module/*": ["src/components/*"],
-      "@home/*": ["src/packages/home/*"],
-      "@admin/*": ["src/packages/admin/*"]
-    }
-  },
-  "include": ["src/**/*.ts", "src/**/*.vue", "src/**/*.d.ts", "**/*.d.ts"],
-  "references": [{"path": "./tsconfig.node.json"}]
+  "files": [],
+  "references": [
+    { "path": "./tsconfig.app.json" },
+    { "path": "./tsconfig.node.json" }
+  ]
 }

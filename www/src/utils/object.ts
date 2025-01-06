@@ -39,13 +39,13 @@ export function ObjectPick(target: Record<string, any>, picks: Array<string>): R
   }, {});
 }
 
-export function MergeOption(target: Record<string, any>, ...options: Array<Record<string, any>>): Record<string, any> {
+export function MergeOptions(target: Record<string, any>, ...options: Array<Record<string, any>>): Record<string, any> {
   return options.reduce(function (prev: Record<string, any>, option: Record<string, any>) {
     if (isEmpty(option)) return prev;
     for (const key of Object.keys(option)) {
       const value = option[key];
       if (hasType(value, 'object') && hasType(prev[key], 'object')) {
-        prev[key] = MergeOption(prev[key], value);
+        prev[key] = MergeOptions(prev[key], value);
       } else {
         prev[key] = value;
       }

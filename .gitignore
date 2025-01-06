@@ -8,6 +8,7 @@ dist
 logs
 build
 output
+backup
 coverage
 node_modules
 

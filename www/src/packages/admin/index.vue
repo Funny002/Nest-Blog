@@ -1,10 +1,15 @@
+<template>
+  <div>
+    <div>Admin</div>
+    <div>
+      <router-view/>
+    </div>
+  </div>
+</template>
+
 <script setup lang="ts">
 
 </script>
-
-<template>
-
-</template>
 
 <style scoped lang="scss">
 

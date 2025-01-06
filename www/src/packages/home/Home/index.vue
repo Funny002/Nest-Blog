@@ -10,7 +10,7 @@
     <el-divider style="margin: 16px 0;"/>
     <div class="home-article">
       <template v-for="article in data.articles">
-        <ArticleItem v-bind="article"/>
+        <article-item v-bind="article"/>
       </template>
     </div>
     <el-divider style="margin: 16px 0;"/>
@@ -20,22 +20,22 @@
   </div>
 </template>
 
-<script lang="ts">export default { name: 'Home' };</script>
+<script lang="ts">export default {name: 'Home'};</script>
 <script setup lang="ts">
-import { reactive } from 'vue';
+import {reactive} from 'vue';
 import ArticleItem from '../components/Article';
 
 const data = reactive({
   list: [
-    { name: '', label: '文章', value: 100 },
-    { name: '', label: '评论', value: 2180 },
-    { name: '', label: '分类', value: 4 },
-    { name: '', label: '归档', value: 40 },
+    {name: '', label: '文章', value: 100},
+    {name: '', label: '评论', value: 2180},
+    {name: '', label: '分类', value: 4},
+    {name: '', label: '归档', value: 40},
   ],
   articles: [
-    { title: 'test', image: '/headerBackgroundImg.png' },
-    { title: 'test', image: '/headerBackgroundImg.png' },
-    { title: 'test', image: '/headerBackgroundImg.png' },
+    {title: 'test', image: '/headerBackgroundImg.png'},
+    {title: 'test', image: '/headerBackgroundImg.png'},
+    {title: 'test', image: '/headerBackgroundImg.png'},
   ],
 });
 </script>

@@ -6,6 +6,11 @@ import {App} from 'vue';
 const router = createRouter({
   history: createWebHistory(),
   routes,
+  scrollBehavior(to, __, savedPosition) {
+    if (savedPosition) return savedPosition;
+    if (to.hash) return {el: to.hash, behavior: 'smooth'};
+    return {left: 0, top: 0, behavior: 'smooth'};
+  },
 });
 
 export function getRouterLocale() {

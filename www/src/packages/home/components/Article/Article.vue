@@ -1,10 +1,15 @@
 <template>
   <article class="var-article">
     <div class="var-article-left">
+      <div class="var-article-block">
+        <div class="var-article-block-content"></div>
+      </div>
       <div class="var-article-image" :style="{backgroundImage: `url(${props.image})`}"></div>
     </div>
     <div class="var-article-right">
-      <h3 class="var-article-title">{{ props.title }}</h3>
+      <h3 class="var-article-title">
+        <a class="var-article-title__link" :href="`/article/${props.id}`">{{ props.title }}</a>
+      </h3>
       <div class="var-article-content">
         <p>{{ props.content }}</p>
       </div>
@@ -37,17 +42,19 @@ import {formatDate} from '@utils/date';
 import {defineProps} from 'vue';
 
 interface Props {
-  date: number;
-  title: string;
+  id?: number;
+  date?: number;
   star?: number;
   read?: number;
+  title?: string;
   image?: string;
-  content: string;
+  content?: string;
   comment?: number;
 }
 
 const props = withDefaults(defineProps<Props>(), {
   star: () => 0,
+  id: () => 0,
   read: () => 0,
   comment: () => 0,
   title: () => '标题',
