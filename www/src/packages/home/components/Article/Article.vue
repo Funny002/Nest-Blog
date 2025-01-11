@@ -1,9 +1,11 @@
 <template>
   <article class="var-article">
     <div class="var-article-left">
-      <div class="var-article-block">
-        <div class="var-article-block-content"></div>
-      </div>
+      <a class="var-article-button is-not-decoration" :href="`/article/${props.id}`">
+        <div class="var-article-button-box">
+          <div class="var-article-button-angle"></div>
+        </div>
+      </a>
       <div class="var-article-image" :style="{backgroundImage: `url(${props.image})`}"></div>
     </div>
     <div class="var-article-right">
@@ -37,9 +39,9 @@
 
 <script lang="ts">export default {name: 'ArticleItem'};</script>
 <script setup lang="ts">
-import {BootstrapIcon} from '@module/BootstrapIcon';
-import {formatDate} from '@utils/date';
-import {defineProps} from 'vue';
+import { BootstrapIcon } from '@module/BootstrapIcon';
+import { formatDate } from '@utils/date';
+import { defineProps } from 'vue';
 
 interface Props {
   id?: number;

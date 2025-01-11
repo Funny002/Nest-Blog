@@ -33,9 +33,14 @@
 body {
   font-size: 14px;
   font-weight: 400;
-  color: var(--var-corlo, #606266);
+  color: var(--el-text-color-regular, --var-corlo);
   background-color: var(--var-background-color, #f2f4f7);
   font-family: Inter, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', '微软雅黑', Arial, sans-serif;
+}
+
+a {
+  text-decoration: none;
+  color: var(--el-text-color-regular, --var-corlo);
 }
 
 #app {

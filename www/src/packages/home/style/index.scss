@@ -1,3 +1,23 @@
+a[href]:not([href=""],[class~="is-not-decoration"]) {
+  position: relative;
+  color: var(--el-color-primary);
+
+  &:before {
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    content: "";
+    position: absolute;
+    transform: rotateY(90deg);
+    transition: transform 0.3s;
+    border-bottom: 1px solid var(--el-color-primary);
+  }
+
+  &:hover:before {
+    transform: rotateY(0deg);
+  }
+}
+
 #app.var-home {
   div.var-home-background {
     width: 100vw;
