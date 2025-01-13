@@ -1,8 +1,9 @@
-import { Column, Entity, Tree, TreeChildren, TreeParent } from 'typeorm';
+import { Column, Entity, Index, Tree, TreeChildren, TreeParent } from 'typeorm';
 import { BaseModelEntity, StatusEnum } from '../Common';
 
 @Entity()
 @Tree('closure-table')
+@Index('index', ['pid', 'uid', 'name', 'audit_uid', 'audit_at'], { unique: false })
 export class Comments extends BaseModelEntity {
   @TreeParent() pid: Comments;
 
@@ -22,9 +23,11 @@ export class Comments extends BaseModelEntity {
 
   @Column(/* 附件 */ { type: 'simple-array' }) files: Array<string>;
 
+  @Column(/* 状态 */ { type: 'enum', enum: StatusEnum, default: StatusEnum.Pending }) status: StatusEnum;
+
   @Column(/* 审核人 */) audit_uid: number;
 
-  @Column(/* 审核回复 */ { type: 'text' }) remark: string;
+  @Column(/* 审核回复 */ { type: 'datetime' }) audit_at: Date;
 
-  @Column(/* 状态 */ { type: 'enum', enum: StatusEnum, default: StatusEnum.Pending }) status: StatusEnum;
+  @Column(/* 审核回复 */ { type: 'text' }) audit_remark: string;
 }

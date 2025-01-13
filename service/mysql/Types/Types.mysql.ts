@@ -1,8 +1,9 @@
-import { Column, Entity, Tree, TreeChildren, TreeParent } from 'typeorm';
+import { Column, Entity, Index, Tree, TreeChildren, TreeParent } from 'typeorm';
 import { BaseModelEntity } from '../Common';
 
 @Entity()
 @Tree('closure-table')
+@Index('unique', ['name'], { unique: true })
 export class Types extends BaseModelEntity {
   @TreeParent() pid: Types;
 

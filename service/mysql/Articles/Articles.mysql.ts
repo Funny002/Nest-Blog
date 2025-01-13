@@ -1,8 +1,10 @@
 import { ArticlesVersions } from './ArticlesVersions.mysql';
 import { BaseModelEntity, StatusEnum } from '../Common';
-import { Column, Entity, OneToMany } from 'typeorm';
+import { Column, Entity, Index, OneToMany } from 'typeorm';
 
 @Entity()
+@Index('unique', ['title'], { unique: true })
+@Index('index', ['uid', 'status'], { unique: false })
 export class Articles extends BaseModelEntity {
   @Column(/* 创建人 */) uid: number;
 
@@ -21,6 +23,8 @@ export class Articles extends BaseModelEntity {
   @Column(/* 收藏 */ { type: 'int', default: 0 }) collect: number;
 
   @Column(/* 评论 */ { type: 'int', default: 0 }) comments: number;
+
+  @Column(/* 草稿 */ { type: 'enum', enum: [0, 1], default: 1 }) is_draft: number;
 
   @Column(/* 状态 */ { type: 'enum', enum: StatusEnum, default: StatusEnum.Pending }) status: StatusEnum;
 

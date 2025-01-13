@@ -7,4 +7,7 @@ export enum StatusEnum {
   Rejected = 'rejected', // 拒绝
   Draft = 'draft', // 草稿
   Publish = 'publish', // 发布
+  Public = 'public', // 公开
+  Private = 'private', // 私密
+  Secret = 'secret', // 保密
 }

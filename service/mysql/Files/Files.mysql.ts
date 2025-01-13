@@ -1,9 +1,12 @@
 import { BaseModelEntity, StatusEnum } from '@app/mysql';
-import { Column, Entity } from 'typeorm';
+import { Column, Entity, Index } from 'typeorm';
 
 @Entity()
+@Index('index', ['format', 'udi', 'types', 'status'], { unique: false })
 export class Files extends BaseModelEntity {
   @Column(/* 格式 */) format: string;
+
+  @Column(/* 用户编号 */) uid: number;
 
   @Column(/* 后缀 */ { length: 30 }) ext: string;
 
@@ -18,6 +21,8 @@ export class Files extends BaseModelEntity {
   @Column(/* 校验码 */ { length: 32 }) md5: string;
 
   @Column(/* 原名称 */ { length: 100 }) original_name: string;
+
+  @Column(/* 类型 */ { type: 'enum', enum: StatusEnum, default: StatusEnum.Public }) types: StatusEnum;
 
   @Column(/* 状态 */ { type: 'enum', enum: StatusEnum, default: StatusEnum.Pending }) status: StatusEnum;
 }
