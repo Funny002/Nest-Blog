@@ -15,6 +15,24 @@
       "compilerOptions": {
         "tsConfigPath": "mysql/tsconfig.lib.json"
       }
+    },
+    "config": {
+      "root": "config",
+      "type": "library",
+      "entryFile": "index",
+      "sourceRoot": "config",
+      "compilerOptions": {
+        "tsConfigPath": "config/tsconfig.lib.json"
+      }
+    },
+    "libs": {
+      "root": "libs",
+      "type": "library",
+      "entryFile": "index",
+      "sourceRoot": "libs",
+      "compilerOptions": {
+        "tsConfigPath": "libs/tsconfig.lib.json"
+      }
     }
   }
 }

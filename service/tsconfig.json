@@ -18,7 +18,9 @@
     "noFallthroughCasesInSwitch": false,
     "forceConsistentCasingInFileNames": false,
     "paths": {
-      "@app/mysql": ["mysql"],
+      "@mysql": ["mysql"],
+      "@config": ["config"],
+      "@libs/*": ["libs/*"]
     }
   }
 }

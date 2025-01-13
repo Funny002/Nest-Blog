@@ -1,16 +1,18 @@
-import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { UsersModule } from './Users/users.module';
 import { ArticlesModule } from './Articles/articles.module';
 import { CommentsModule } from './Comments/comments.module';
-import { TagsModule } from './Tags/tags.module';
+import { AppName, AppSystem, ConfigGlobal } from '@config';
 import { TypesModule } from './Types/types.module';
-import { FilesModule } from './files/files.module';
-import { AuthModule } from './auth/auth.module';
+import { FilesModule } from './Files/files.module';
+import { UsersModule } from './Users/users.module';
+import { TagsModule } from './Tags/tags.module';
+import { AuthModule } from './Auth/auth.module';
+import { ConfigService } from '@nestjs/config';
+import { Module } from '@nestjs/common';
 
 @Module({
   imports: [
+    // 配置项
+    ConfigGlobal.use(),
     UsersModule,
     ArticlesModule,
     CommentsModule,
@@ -19,7 +21,19 @@ import { AuthModule } from './auth/auth.module';
     FilesModule,
     AuthModule,
   ],
-  controllers: [AppController],
-  providers: [AppService],
+  controllers: [],
+  providers: [],
 })
-export class AppModule {}
+export class AppModule {
+  public static port: number;
+
+  public static version: string;
+
+  constructor(private readonly configService: ConfigService) {
+    const config = configService.get<AppSystem>(AppName);
+
+    AppModule.port = config.port;
+
+    AppModule.version = config.version;
+  }
+}

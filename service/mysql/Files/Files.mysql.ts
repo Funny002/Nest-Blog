@@ -1,4 +1,4 @@
-import { BaseModelEntity, StatusEnum } from '@app/mysql';
+import { BaseModelEntity, StatusEnum } from '../Common';
 import { Column, Entity, Index } from 'typeorm';
 
 @Entity()

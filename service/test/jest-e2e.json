@@ -12,6 +12,8 @@
   },
   "moduleNameMapper": {
     "@app/mysql/(.*)": "<rootDir>/../libs/mysql/src/$1",
-    "@app/mysql": "<rootDir>/../libs/mysql/src"
+    "@app/mysql": "<rootDir>/../libs/mysql/src",
+    "@app/swagger/(.*)": "<rootDir>/../libs/swagger/src/$1",
+    "@app/swagger": "<rootDir>/../libs/swagger/src"
   }
 }
