@@ -2,10 +2,10 @@ import { TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { registerAs } from '@nestjs/config';
 import * as process from 'process';
 
-/** 数据库名称 */
+/* 名称 */
 export const MysqlName = 'app_service';
 
-/** 数据库配置 */
+/* 配置 */
 export const MysqlConf = registerAs(MysqlName, (): TypeOrmModuleOptions => {
   return {
     type: 'mysql',
@@ -17,10 +17,11 @@ export const MysqlConf = registerAs(MysqlName, (): TypeOrmModuleOptions => {
     charset: 'utf8',
     //
     debug: false,
-    logging: ['query'],
+    logging: ['error', 'migration'],
     logger: 'simple-console',
     synchronize: true,
     retryDelay: 5000,
     retryAttempts: 10,
+    maxQueryExecutionTime: 1000,
   };
 });

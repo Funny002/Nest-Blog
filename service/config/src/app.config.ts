@@ -1,7 +1,7 @@
 import { ValidationPipeOptions } from '@nestjs/common/pipes/validation.pipe';
 import { registerAs } from '@nestjs/config';
 
-/** 服务配置声明 */
+/* 声明 */
 export interface AppSystem {
   port: number;
   prefix: string;
@@ -12,10 +12,10 @@ export interface AppSystem {
   pipes?: ValidationPipeOptions;
 }
 
-/** 服务配置名 */
+/* 名称 */
 export const AppName = 'app_name';
 
-/** 服务配置 */
+/* 配置 */
 export const AppConf = registerAs(AppName, (): AppSystem => {
   return {
     port: 9871,

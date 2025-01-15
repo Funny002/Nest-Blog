@@ -11,7 +11,7 @@ import { RedisConf } from './src/redis.config';
 import { BullConf } from './src/bull.config';
 import { AppConf } from './src/app.config';
 
-/** 引用 Config */
+/* 引用 Config */
 export class ConfigGlobal {
   static use(load?: any[]): Promise<DynamicModule> {
     load = load || [AppConf, BullConf, RedisConf, MysqlConf, JwtAuthConf];

@@ -1,3 +1,4 @@
+import { ValidationPipeOptions } from '@nestjs/common/pipes/validation.pipe';
 import { ArticlesModule } from './Articles/articles.module';
 import { CommentsModule } from './Comments/comments.module';
 import { AppName, AppSystem, ConfigGlobal } from '@config';
@@ -7,12 +8,17 @@ import { UsersModule } from './Users/users.module';
 import { TagsModule } from './Tags/tags.module';
 import { AuthModule } from './Auth/auth.module';
 import { ConfigService } from '@nestjs/config';
+import { MysqlModel } from '@libs/mysql';
 import { Module } from '@nestjs/common';
+import { AllEntities } from '@mysql';
+import { UploadModule } from './Upload/upload.module';
 
 @Module({
   imports: [
-    // 配置项
-    ConfigGlobal.use(),
+    ConfigGlobal.use(), // 配置
+    MysqlModel.use(AllEntities), // 数据库
+
+    // module
     UsersModule,
     ArticlesModule,
     CommentsModule,
@@ -20,19 +26,28 @@ import { Module } from '@nestjs/common';
     TypesModule,
     FilesModule,
     AuthModule,
+    UploadModule,
   ],
   controllers: [],
-  providers: [],
+  providers: [ConfigService],
 })
 export class AppModule {
   public static port: number;
 
   public static version: string;
 
+  public static pipes: ValidationPipeOptions;
+
+  public static prefix: string;
+
   constructor(private readonly configService: ConfigService) {
     const config = configService.get<AppSystem>(AppName);
 
     AppModule.port = config.port;
+
+    AppModule.pipes = config.pipes;
+
+    AppModule.prefix = config.prefix;
 
     AppModule.version = config.version;
   }

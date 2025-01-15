@@ -15,4 +15,25 @@ export * from './Files';
 export * from './Types';
 export * from './Tags';
 
-export const AllEntities = [Articles, ArticlesVersions, Comments, Setting, Files, Tags, Types, Users, UsersName, UsersLogin];
+export const AllEntities = [
+  // 文章
+  Articles,
+  // 文章版本
+  ArticlesVersions,
+  // 评论
+  Comments,
+  // 配置
+  Setting,
+  // 文件
+  Files,
+  // 文章标签
+  Tags,
+  // 文章类型
+  Types,
+  // 用户
+  Users,
+  // 用户名称
+  UsersName,
+  // 用户登录
+  UsersLogin,
+];

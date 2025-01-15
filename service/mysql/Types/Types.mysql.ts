@@ -9,7 +9,7 @@ export class Types extends BaseModelEntity {
 
   @TreeChildren() children: Types[];
 
-  @Column(/* 名称 */ { length: 100 }) name: string;
+  @Column(/* 引用 */) quote: number;
 
-  @Column(/* 引用 */ { length: 100 }) quote: number;
+  @Column(/* 名称 */ { length: 100 }) name: string;
 }

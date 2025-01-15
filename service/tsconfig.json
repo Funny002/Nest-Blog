@@ -19,8 +19,12 @@
     "forceConsistentCasingInFileNames": false,
     "paths": {
       "@mysql": ["mysql"],
+      "@utils": ["utils"],
       "@config": ["config"],
-      "@libs/*": ["libs/*"]
+      "@middleware": ["middleware"],
+      "@interceptor": ["interceptor"],
+      "@libs/*": ["libs/*"],
+      "@utils/*": ["utils/src/*"]
     }
   }
 }

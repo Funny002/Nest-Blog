@@ -1,8 +1,10 @@
 import { BullModuleOptions } from '@nestjs/bull/dist/interfaces/bull-module-options.interface';
 import { registerAs } from '@nestjs/config';
 
+/* 名称 */
 export const BullName = 'bull-queue';
 
+/* 配置 */
 export const BullConf = registerAs(BullName, (): BullModuleOptions => {
   return {
     prefix: 'bull',

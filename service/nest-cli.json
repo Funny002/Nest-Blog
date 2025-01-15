@@ -7,6 +7,30 @@
     "webpack": true
   },
   "projects": {
+    "cli": {
+      "type": "application",
+      "root": "cli",
+      "entryFile": "index",
+      "sourceRoot": "cli"
+    },
+    "config": {
+      "root": "config",
+      "type": "library",
+      "entryFile": "index",
+      "sourceRoot": "config",
+      "compilerOptions": {
+        "tsConfigPath": "config/tsconfig.lib.json"
+      }
+    },
+    "utils": {
+      "root": "utils",
+      "type": "library",
+      "entryFile": "index",
+      "sourceRoot": "utils",
+      "compilerOptions": {
+        "tsConfigPath": "utils/tsconfig.lib.json"
+      }
+    },
     "mysql": {
       "root": "mysql",
       "type": "library",
@@ -16,13 +40,22 @@
         "tsConfigPath": "mysql/tsconfig.lib.json"
       }
     },
-    "config": {
-      "root": "config",
+    "middleware": {
       "type": "library",
-      "entryFile": "index",
-      "sourceRoot": "config",
+      "root": "middleware",
+      "entryFile": "main",
+      "sourceRoot": "middleware",
       "compilerOptions": {
-        "tsConfigPath": "config/tsconfig.lib.json"
+        "tsConfigPath": "middleware/tsconfig.lib.json"
+      }
+    },
+    "interfaces": {
+      "type": "library",
+      "root": "interfaces",
+      "entryFile": "main",
+      "sourceRoot": "interfaces",
+      "compilerOptions": {
+        "tsConfigPath": "interfaces/tsconfig.lib.json"
       }
     },
     "libs": {

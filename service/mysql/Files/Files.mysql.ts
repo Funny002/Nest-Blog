@@ -2,7 +2,7 @@ import { BaseModelEntity, StatusEnum } from '../Common';
 import { Column, Entity, Index } from 'typeorm';
 
 @Entity()
-@Index('index', ['format', 'udi', 'types', 'status'], { unique: false })
+@Index('index', ['format', 'uid', 'types', 'status'], { unique: false })
 export class Files extends BaseModelEntity {
   @Column(/* 格式 */) format: string;
 
