@@ -2,7 +2,7 @@
   "extends": "../tsconfig.json",
   "compilerOptions": {
     "declaration": true,
-    "outDir": "../dist/utils"
+    "outDir": "../dist/cli"
   },
   "include": ["**/*"],
   "exclude": ["node_modules", "dist", "test", "**/*spec.ts"]

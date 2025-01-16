@@ -17,7 +17,13 @@ export class ResponseInterceptor implements NestInterceptor {
     const request = context.switchToHttp().getRequest();
     return next.handle().pipe(
       map((context): ResponseDto => {
-        return { code: 0, data: context, path: request.url, method: request.method, time: dateFormat('Y-M-D H:I:S t') };
+        return {
+          code: 0,
+          data: context,
+          path: request.url,
+          method: request.method,
+          time: dateFormat('Y-M-D H:I:S t'),
+        };
       }),
     );
   }

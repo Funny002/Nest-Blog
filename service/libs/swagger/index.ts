@@ -1,6 +1,6 @@
 import { SecuritySchemeObject } from '@nestjs/swagger/dist/interfaces/open-api-spec.interface';
-import { NestFastifyApplication } from '@nestjs/platform-fastify';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import { INestApplication } from '@nestjs/common';
 
 /* 标题 */
 const title = 'Nest Blog Api';
@@ -19,7 +19,7 @@ export const AUTH_OPTIONS: SecuritySchemeObject = {
 };
 
 /* Swagger */
-export function useSwagger(app: NestFastifyApplication, version: string) {
+export function useSwagger(app: INestApplication, version: string) {
   const api = `swagger-ui/v${version}`;
 
   const options = new DocumentBuilder();

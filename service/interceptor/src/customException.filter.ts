@@ -1,13 +1,12 @@
 import { ExceptionFilter, Catch, ArgumentsHost, HttpException, HttpStatus } from '@nestjs/common';
-// import { getClientIp } from 'request-ip';
+import { Request, Response } from 'express';
 import { dateFormat } from '@utils/date';
-import { Request } from 'express';
 
 @Catch()
 export class CustomExceptionFilter implements ExceptionFilter {
   catch(exception: unknown, host: ArgumentsHost) {
     const ctx = host.switchToHttp();
-    const response = ctx.getResponse();
+    const response = ctx.getResponse<Response>();
     const request = ctx.getRequest<Request>();
 
     let status = HttpStatus.INTERNAL_SERVER_ERROR;
@@ -26,7 +25,6 @@ export class CustomExceptionFilter implements ExceptionFilter {
       path: request.url,
       method: request.method,
       time: dateFormat('Y-M-D H:I:S t'),
-      // ip: getClientIp(request).replace('::ffff:', ''),
     });
   }
 }

@@ -1,4 +1,3 @@
-import { FastifyAdapter, NestFastifyApplication } from '@nestjs/platform-fastify';
 import { Logger, ValidationPipe, VersioningType } from '@nestjs/common';
 import { useInterceptor } from '@interceptor';
 import { useMiddleware } from '@middleware';
@@ -8,7 +7,7 @@ import { AppModule } from './app.module';
 
 /* 初始化 */
 async function bootstrap() {
-  const app = await NestFactory.create<NestFastifyApplication>(AppModule, new FastifyAdapter());
+  const app = await NestFactory.create(AppModule);
 
   app.enableCors(); // 跨域
 

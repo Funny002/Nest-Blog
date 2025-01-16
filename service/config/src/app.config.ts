@@ -27,6 +27,6 @@ export const AppConf = registerAs(AppName, (): AppSystem => {
       stopAtFirstError: true,
     },
     cookieSecret: process.env['COOKIE_SECRET'],
-    filesPath: process.env['FILES_PATH'] || './upload',
+    filesPath: process.env['UPLOAD_FILE_PATH'] || './upload',
   };
 });

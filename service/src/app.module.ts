@@ -1,23 +1,23 @@
 import { ValidationPipeOptions } from '@nestjs/common/pipes/validation.pipe';
+import { AllConfig, AppName, AppSystem, ConfigModel } from '@config';
+import { ConfigService } from '@nestjs/config';
+import { MysqlModel } from '@libs/mysql';
+import { Module } from '@nestjs/common';
+import { AllEntities } from '@mysql';
+// Modules
 import { ArticlesModule } from './Articles/articles.module';
 import { CommentsModule } from './Comments/comments.module';
-import { AppName, AppSystem, ConfigGlobal } from '@config';
+import { UploadModule } from './Upload/upload.module';
 import { TypesModule } from './Types/types.module';
 import { FilesModule } from './Files/files.module';
 import { UsersModule } from './Users/users.module';
 import { TagsModule } from './Tags/tags.module';
 import { AuthModule } from './Auth/auth.module';
-import { ConfigService } from '@nestjs/config';
-import { MysqlModel } from '@libs/mysql';
-import { Module } from '@nestjs/common';
-import { AllEntities } from '@mysql';
-import { UploadModule } from './Upload/upload.module';
 
 @Module({
   imports: [
-    ConfigGlobal.use(), // 配置
+    ConfigModel.use(AllConfig), // 配置
     MysqlModel.use(AllEntities), // 数据库
-
     // module
     UsersModule,
     ArticlesModule,

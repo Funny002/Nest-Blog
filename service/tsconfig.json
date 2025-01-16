@@ -23,6 +23,7 @@
       "@config": ["config"],
       "@middleware": ["middleware"],
       "@interceptor": ["interceptor"],
+      "@src/*": ["src/*"],
       "@libs/*": ["libs/*"],
       "@utils/*": ["utils/src/*"]
     }

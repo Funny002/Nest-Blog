@@ -5,16 +5,13 @@
   "license": "TIM",
   "scripts": {
     "build": "nest build",
-    "format": "prettier --write \"src/*/*.ts\" \"test/*/*.ts\" \"libs/*/*.ts\"",
+    "build:cli": "nest build cli",
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",
-    "lint": "eslint \"{src,apps,libs,test}/*/*.ts\" --fix",
     "test": "jest",
-    "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
-    "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "dependencies": {
@@ -29,16 +26,14 @@
     "@nestjs/mapped-types": "*",
     "@nestjs/passport": "^10.0.3",
     "@nestjs/platform-express": "^10.0.0",
-    "@nestjs/platform-fastify": "^10.4.15",
     "@nestjs/swagger": "^8.1.1",
     "bull": "^4.16.5",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
-    "fastify-swagger": "^5.1.1",
+    "commander": "^13.0.0",
     "ioredis": "^5.4.2",
     "mysql2": "^3.11.3",
     "nodemailer": "^6.9.16",
-    "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
     "passport-local": "^1.0.0",
     "reflect-metadata": "^0.2.0",
@@ -98,6 +93,7 @@
       "<rootDir>/config/"
     ],
     "moduleNameMapper": {
+      "^@src(|/.*)$": "<rootDir>/src/$1",
       "^@libs(|/.*)$": "<rootDir>/libs/$1",
       "^@mysql(|/.*)$": "<rootDir>/mysql/$1",
       "^@config(|/.*)$": "<rootDir>/config/$1"
