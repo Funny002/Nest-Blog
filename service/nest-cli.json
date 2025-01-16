@@ -6,11 +6,9 @@
   },
   "compilerOptions": {
     "webpack": true,
-    "deleteOutDir": true
+    "deleteOutDir": false
   },
-  "root": "main",
   "sourceRoot": "src",
-  "entryFile": "index",
   "projects": {
     "cli": {
       "root": "cli",
