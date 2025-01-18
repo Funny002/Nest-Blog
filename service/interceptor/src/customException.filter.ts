@@ -1,6 +1,8 @@
-import { ExceptionFilter, Catch, ArgumentsHost, HttpException, HttpStatus } from '@nestjs/common';
+import { ExceptionFilter, Catch, ArgumentsHost, HttpException, HttpStatus, ForbiddenException } from '@nestjs/common';
 import { Request, Response } from 'express';
 import { dateFormat } from '@utils/date';
+import { InvalidMiddlewareException } from '@nestjs/core/errors/exceptions/invalid-middleware.exception';
+import { ForbiddenTransactionModeOverrideError } from 'typeorm';
 
 @Catch()
 export class CustomExceptionFilter implements ExceptionFilter {
@@ -10,13 +12,13 @@ export class CustomExceptionFilter implements ExceptionFilter {
     const request = ctx.getRequest<Request>();
 
     let status = HttpStatus.INTERNAL_SERVER_ERROR;
-    let message = 'Internal server error';
+    let message = exception['message'] || 'Internal server error';
 
     if (exception instanceof HttpException) {
       status = exception.getStatus();
-      message = exception.message || exception.getResponse()['message'] || exception.getResponse();
+      message = exception.getResponse()['message'] || exception.getResponse();
     } else {
-      console.log(exception);
+      console.log('exception', exception);
     }
 
     response.status(status).json({

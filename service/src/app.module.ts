@@ -1,9 +1,11 @@
 import { ValidationPipeOptions } from '@nestjs/common/pipes/validation.pipe';
 import { AllConfig, AppName, AppSystem, ConfigModel } from '@config';
+import { AppController } from '@src/app.controller';
 import { ConfigService } from '@nestjs/config';
 import { MysqlModel } from '@libs/mysql';
 import { Module } from '@nestjs/common';
 import { AllEntities } from '@mysql';
+
 // Modules
 import { ArticlesModule } from './Articles/articles.module';
 import { CommentsModule } from './Comments/comments.module';
@@ -28,7 +30,7 @@ import { AuthModule } from './Auth/auth.module';
     AuthModule,
     UploadModule,
   ],
-  controllers: [],
+  controllers: [AppController],
   providers: [ConfigService],
 })
 export class AppModule {

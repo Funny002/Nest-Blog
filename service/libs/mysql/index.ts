@@ -21,3 +21,6 @@ export class MysqlModel {
     return TypeOrmModule.forFeature(args);
   }
 }
+
+/* SQL 模块 */
+export * from './src/Articles';
