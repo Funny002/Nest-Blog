@@ -3,7 +3,7 @@ import { Column, Entity, Index } from 'typeorm';
 
 @Entity()
 @Index('index', ['format', 'uid', 'types', 'status'], { unique: false })
-export class Files extends BaseModelEntity {
+export class Files extends BaseModelEntity<Files> {
   @Column(/* 格式 */) format: string;
 
   @Column(/* 用户编号 */) uid: number;

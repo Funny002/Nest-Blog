@@ -1,11 +1,11 @@
 import { ArticlesVersions } from './ArticlesVersions.mysql';
-import { BaseModelEntity, StatusEnum } from '../Common';
 import { Column, Entity, Index, OneToMany } from 'typeorm';
+import { BaseModelEntity, StatusEnum } from '../Common';
 
 @Entity()
 @Index('unique', ['title'], { unique: true })
 @Index('index', ['uid', 'status'], { unique: false })
-export class Articles extends BaseModelEntity {
+export class Articles extends BaseModelEntity<Articles> {
   @Column(/* 创建人 */) uid: number;
 
   @Column(/* 标题 */ { length: 100 }) title: string;

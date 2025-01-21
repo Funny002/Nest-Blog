@@ -10,7 +10,7 @@ export class ArticlesService {
   constructor(private readonly articlesSqlService: ArticlesSqlService) {}
 
   async getArticle(id: number) {
-    return await this.articlesSqlService.getArticles(id);
+    // return await this.articlesSqlService.getArticles(id);
   }
 
   async createArticle(body: ArticleCreateDto) {}

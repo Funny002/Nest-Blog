@@ -24,3 +24,5 @@ export class MysqlModel {
 
 /* SQL 模块 */
 export * from './src/Articles';
+export * from './src/Types';
+export * from './src/Tags';

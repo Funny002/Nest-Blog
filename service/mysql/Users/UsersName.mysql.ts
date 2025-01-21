@@ -3,7 +3,7 @@ import { Column, Entity, Index } from 'typeorm';
 
 @Entity()
 @Index('index', ['uid', 'audit_uid', 'status'], { unique: false })
-export class UsersName extends BaseModelEntity {
+export class UsersName extends BaseModelEntity<UsersName> {
   @Column(/* 用户编号 */) uid: number;
 
   @Column(/* 名称 */ { length: 100 }) name: string;

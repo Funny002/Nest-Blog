@@ -13,7 +13,7 @@ export interface UsersLoginLimit {
 @Entity()
 @Index('index', ['login_at'], { unique: false })
 @Index('unique', ['uid', 'email', 'user'], { unique: true })
-export class Users extends BaseModelEntity {
+export class Users extends BaseModelEntity<Users> {
   @Column(/* 用户编号 */) uid: number;
 
   @Column(/* 邮箱 */) email: string;

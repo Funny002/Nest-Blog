@@ -4,7 +4,7 @@ import { Column, Entity, Index } from 'typeorm';
 @Entity()
 @Index('unique', ['keys'], { unique: true })
 @Index('index', ['name', 'types', 'status'], { unique: false })
-export class Setting extends BaseModelEntity {
+export class Setting extends BaseModelEntity<Setting> {
   @Column(/* 标识 */) keys: string;
 
   @Column(/* 名称 */) name: string;

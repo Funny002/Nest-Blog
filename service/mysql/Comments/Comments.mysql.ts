@@ -4,7 +4,7 @@ import { BaseModelEntity, StatusEnum } from '../Common';
 @Entity()
 @Tree('closure-table')
 @Index('index', ['pid', 'uid', 'name', 'audit_uid', 'audit_at'], { unique: false })
-export class Comments extends BaseModelEntity {
+export class Comments extends BaseModelEntity<Comments> {
   @TreeParent() pid: Comments;
 
   @Column(/* 用户 */) uid: number;

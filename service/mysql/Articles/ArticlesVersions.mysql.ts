@@ -4,7 +4,7 @@ import { Articles } from './Articles.mysql';
 
 @Entity()
 @Index('index', ['uid', 'status', 'version', 'audit_uid', 'audit_at'], { unique: false })
-export class ArticlesVersions extends BaseModelEntity {
+export class ArticlesVersions extends BaseModelEntity<ArticlesVersions> {
   @ManyToOne(() => Articles, ({ versions }) => versions) pid: Articles;
 
   @Column(/* 创建人 */) uid: number;

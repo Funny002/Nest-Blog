@@ -10,13 +10,21 @@ export class ArticlesSqlService {
     @InjectRepository(ArticlesVersions) private articlesVersions: Repository<ArticlesVersions>,
   ) {}
 
-  async getArticles(id: number) {
-    console.log('id', id);
-    return await this.articles.findOne({ where: { id } });
-  }
+  async createArticle() {}
 
-  async getArticlesContent(articles: Articles) {
-    // articles.versions
-    // return await this.articlesVersions.findOne({where:{}})
-  }
+  // async getArticles(id: number) {
+  //   console.log('id', id);
+  //   return await this.articles.findOne({ where: { id } });
+  // }
+  //
+  // async getArticlesContent(articles: Articles) {
+  //   // articles.versions
+  //   return articles.versions;
+  //   // return await this.articlesVersions.findOne({where:{}})
+  // }
+  //
+  // async getArticlesInfo(id: number) {
+  //   const articles = await this.getArticles(id);
+  //   const articlesContent = await this.getArticlesContent(articles);
+  // }
 }
