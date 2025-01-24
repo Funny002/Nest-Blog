@@ -10,7 +10,7 @@ export class ArticlesSqlService {
     @InjectRepository(ArticlesVersions) private articlesVersions: Repository<ArticlesVersions>,
   ) {}
 
-  async createArticle() {}
+  async create() {}
 
   // async getArticles(id: number) {
   //   console.log('id', id);

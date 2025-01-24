@@ -45,12 +45,12 @@ export class ArticleCreateDto {
   is_draft: number;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   @ApiProperty({ description: '类型', enum: TypeEnum, default: TypeEnum.Public, required: false })
   type: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsOptional()
   @ApiProperty({ description: '状态', enum: StatusEnum, default: StatusEnum.Pending, required: false })
   status: string;
 }

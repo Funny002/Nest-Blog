@@ -1,6 +1,7 @@
 import { ArticlesVersions } from './ArticlesVersions.mysql';
 import { Column, Entity, Index, OneToMany } from 'typeorm';
 import { BaseModelEntity, StatusEnum } from '../Common';
+import { isNumber, isObject } from '@utils/object';
 
 @Entity()
 @Index('unique', ['title'], { unique: true })
@@ -28,5 +29,21 @@ export class Articles extends BaseModelEntity<Articles> {
 
   @Column(/* 状态 */ { type: 'enum', enum: StatusEnum, default: StatusEnum.Pending }) status: StatusEnum;
 
-  @OneToMany(() => ArticlesVersions, ({ pid }) => pid) versions: Array<ArticlesVersions>;
+  constructor(body?: Record<string, any>, uid?: number) {
+    super();
+    if (body && isObject(body)) {
+      const { title = '', status = StatusEnum.Pending, is_draft = 1, tags = [], types = [], files = [] } = body;
+      this.tags = tags;
+      this.types = types;
+      this.files = files;
+      this.title = title;
+      this.status = status;
+      this.is_draft = is_draft;
+    }
+    if (isNumber(uid)) this.uid = uid;
+  }
+
+  static async hasTitle(title: string) {
+    return (await this.countBy({ title })) >= 1;
+  }
 }

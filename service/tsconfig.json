@@ -27,5 +27,6 @@
       "@libs/*": ["libs/*"],
       "@utils/*": ["utils/src/*"]
     }
-  }
+  },
+  "include": ["types/**/*.d.ts", "src/**/*.ts"]
 }

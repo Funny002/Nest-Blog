@@ -1,6 +1,9 @@
-import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Put, Req } from '@nestjs/common';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { ArticlesService } from './articles.service';
+import { CustomError } from '@libs/error';
+import { Articles } from '@mysql';
+import { Request } from 'express';
 
 // Dto
 import { ArticleCreateDto } from '@src/Articles/Dto/create.dto';
@@ -11,16 +14,24 @@ import { ArticleUpdateDto } from '@src/Articles/Dto/update.dto';
 export class ArticlesController {
   constructor(private readonly articlesService: ArticlesService) {}
 
+  @Post('create')
+  @ApiOperation({ summary: '创建文章' })
+  async create(@Req() req: Request, @Body() body: ArticleCreateDto) {
+    const uid = req['user']?.uid || 0;
+    if (await Articles.hasTitle(body.title)) {
+      throw new CustomError('标题已存在');
+    }
+    try {
+      return await this.articlesService.create(uid, body);
+    } catch (e: any) {
+      throw new CustomError(e.message);
+    }
+  }
+
   @Get('info/:tid')
   @ApiOperation({ summary: '获取文章信息' })
   async info(@Param('tid') tid: number) {
     return await this.articlesService.getArticle(tid);
-  }
-
-  @Post('create')
-  @ApiOperation({ summary: '创建文章' })
-  async create(@Body() body: ArticleCreateDto) {
-    return body;
   }
 
   @Put('update/:tid')

@@ -1,10 +1,14 @@
-import { Module } from '@nestjs/common';
-import { ArticlesService } from './articles.service';
 import { ArticlesController } from './articles.controller';
-import { ArticlesSqlModule } from '@libs/mysql';
+import { ArticlesService } from './articles.service';
+import { Articles, ArticlesVersions } from '@mysql';
+import { MysqlModel } from '@libs/mysql';
+import { Module } from '@nestjs/common';
 
 @Module({
-  imports: [ArticlesSqlModule],
+  imports: [
+    // Mysql
+    MysqlModel.feature(Articles, ArticlesVersions),
+  ],
   controllers: [ArticlesController],
   providers: [ArticlesService],
 })

@@ -15,14 +15,13 @@ export abstract class BaseModelEntity<T extends BaseModelEntity<T>> extends Base
   }
 
   /* 事务 */
-  static async transaction<T extends BaseModelEntity<T>>(this: { new (): T } & typeof BaseModelEntity, handler: (repository: Repository<T>, manager: EntityManager) => any) {
+  static async transaction<T extends BaseModelEntity<T>>(this: { new (): T } & typeof BaseModelEntity, handler: (query: QueryRunner, repository: Repository<T>) => any) {
     const query = this.getQueryRunner();
     await query.connect();
     await query.startTransaction();
     try {
-      const manager = query.manager;
-      const repository = manager.getRepository(this) as Repository<T>;
-      const result = await handler(repository, manager);
+      const repository = query.manager.getRepository(this) as Repository<T>;
+      const result = await handler(query, repository);
       await query.commitTransaction();
       return result;
     } catch (e: any) {

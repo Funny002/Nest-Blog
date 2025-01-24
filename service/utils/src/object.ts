@@ -1,3 +1,5 @@
+import { rethrow } from '@nestjs/core/helpers/rethrow';
+
 export const getType = (target: any): string => Object.prototype.toString.call(target).slice(8, -1).toLocaleLowerCase();
 
 export const hasType = (target: any, ...types: string[]): boolean => types.map((v) => v.toLocaleLowerCase()).includes(getType(target));
@@ -36,3 +38,7 @@ export function mergeOptions<T = any>(option: T, ...options: any[]) {
   }
   return result;
 }
+
+export const isObject = (target: any) => hasType(target, 'object');
+
+export const isNumber = (target: any) => hasType(target, 'number') && !isNaN(target);
