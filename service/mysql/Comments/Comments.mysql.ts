@@ -7,15 +7,17 @@ import { BaseModelEntity, StatusEnum } from '../Common';
 export class Comments extends BaseModelEntity<Comments> {
   @TreeParent() pid: Comments;
 
-  @Column(/* 用户 */) uid: number;
-
   @TreeChildren() children: Comments[];
 
-  @Column(/* 名称 */ { length: 100 }) name: string;
+  @Column(/* 文章 */) tid: number;
 
-  @Column(/* 邮箱 */ { length: 100 }) email: string;
+  @Column(/* 用户 */ { nullable: true }) uid: number;
 
-  @Column(/* 链接 */ { length: 100 }) href: string;
+  @Column(/* 名称 */ { length: 100, nullable: true }) name: string;
+
+  @Column(/* 邮箱 */ { length: 100, nullable: true }) email: string;
+
+  @Column(/* 链接 */ { length: 100, nullable: true }) href: string;
 
   @Column(/* 内容 */ { type: 'text' }) content: string;
 
@@ -25,9 +27,24 @@ export class Comments extends BaseModelEntity<Comments> {
 
   @Column(/* 状态 */ { type: 'enum', enum: StatusEnum, default: StatusEnum.Pending }) status: StatusEnum;
 
-  @Column(/* 审核人 */) audit_uid: number;
+  @Column(/* 审核人 */ { nullable: true }) audit_uid: number;
 
-  @Column(/* 审核回复 */ { type: 'datetime' }) audit_at: Date;
+  @Column(/* 审核回复 */ { type: 'datetime', nullable: true }) audit_at: Date;
 
-  @Column(/* 审核回复 */ { type: 'text' }) audit_remark: string;
+  @Column(/* 审核回复 */ { type: 'text', nullable: true }) audit_remark: string;
+
+  constructor(tid?: number, body: Record<string, any> = {}, parent?: Comments) {
+    super();
+    if (tid) {
+      this.tid = tid;
+      this.content = body.content;
+      //
+      if (parent) this.pid = parent;
+      if (body.uid) this.uid = body.uid;
+      if (body.name) this.name = body.name;
+      if (body.href) this.href = body.href;
+      if (body.email) this.email = body.email;
+      if (body.files) this.files = body.files;
+    }
+  }
 }

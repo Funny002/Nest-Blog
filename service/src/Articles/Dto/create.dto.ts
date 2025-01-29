@@ -48,9 +48,4 @@ export class ArticleCreateDto {
   @IsOptional()
   @ApiProperty({ description: '类型', enum: TypeEnum, default: TypeEnum.Public, required: false })
   type: string;
-
-  @IsString()
-  @IsOptional()
-  @ApiProperty({ description: '状态', enum: StatusEnum, default: StatusEnum.Pending, required: false })
-  status: string;
 }

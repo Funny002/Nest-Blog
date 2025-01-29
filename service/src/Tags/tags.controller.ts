@@ -1,6 +1,6 @@
 import { Controller, Delete, Get, Post } from '@nestjs/common';
-import { TagsService } from './tags.service';
 import { ApiOperation, ApiTags } from '@nestjs/swagger';
+import { TagsService } from './tags.service';
 
 @ApiTags('Tags')
 @Controller('tags')

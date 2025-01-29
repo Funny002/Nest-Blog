@@ -1,4 +1,4 @@
-import { BaseEntity, CreateDateColumn, EntityManager, FindOptionsWhere, PrimaryGeneratedColumn, Repository, UpdateDateColumn } from 'typeorm';
+import { BaseEntity, CreateDateColumn, FindOptionsWhere, PrimaryGeneratedColumn, Repository, UpdateDateColumn } from 'typeorm';
 import { QueryRunner } from 'typeorm/query-runner/QueryRunner';
 import { PaginationRequest } from '@libs/pagination';
 
